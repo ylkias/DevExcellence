@@ -10,7 +10,7 @@ function value(args, flag, fallback) { const i = args.indexOf(flag); return i < 
 function has(args, flag) { return args.includes(flag); }
 function save(file, text) { const target = path.resolve(file); fs.mkdirSync(path.dirname(target), { recursive: true }); fs.writeFileSync(target, text, "utf8"); process.stderr.write("Relatório salvo em: " + target + "\n"); }
 function help() {
-  console.log("DevExcellence CLI " + pkg.version + "\n\nComandos:\n  check [--json] [--output arquivo] [--fail-on critical|high|medium|low|never] [--run] [--no-secrets]\n  init [--force] [--project nome]\n  score [--input arquivo] [--json] [--output arquivo.md] [--min-coverage 80]\n\nO CLI não usa rede nem envia arquivos. Comandos externos exigem --run e argv explícito em .devexcellence/config.json.");
+  console.log("DevExcellence CLI " + pkg.version + "\n\nComandos:\n  check [--json] [--output arquivo] [--fail-on critical|high|medium|low|never] [--run] [--no-secrets] [--no-test-audit]\n  init [--force] [--project nome]\n  score [--input arquivo] [--json] [--output arquivo.md] [--min-coverage 80]\n\nO CLI não usa rede nem envia arquivos. Comandos externos exigem --run e argv explícito em .devexcellence/config.json.");
 }
 async function main() {
   const args = process.argv.slice(2), command = args[0] || "help";
@@ -27,7 +27,7 @@ async function main() {
   if (command === "check") {
     const failOn = value(args,"--fail-on","critical");
     if (!["critical","high","medium","low","never"].includes(failOn)) { console.error("--fail-on inválido."); return 2; }
-    const report = runProjectChecks({ runCommands: has(args,"--run"), failOn, includeSecrets: !has(args,"--no-secrets") });
+    const report = runProjectChecks({ runCommands: has(args,"--run"), failOn, includeSecrets: !has(args,"--no-secrets"), testAudit: !has(args,"--no-test-audit") });
     const json = has(args,"--json"), output = value(args,"--output",null);
     if (output) save(output, output.endsWith(".json") ? JSON.stringify(report,null,2)+"\n" : renderCheckMarkdown(report)+"\n");
     console.log(json ? JSON.stringify(report,null,2) : renderCheckText(report));

@@ -24,6 +24,7 @@ jobs:
         run: |
           node --check cli/bin/devexcellence.js
           node --check cli/src/check.js
+          node --check cli/src/test-audit.js
           node --check cli/src/score.js
           node --check scripts/validate-skill-package.mjs
       - name: Run CLI unit tests

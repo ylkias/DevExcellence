@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.0 — auditoria de testes e validação reforçada
+
+- Added static test-file auditing for common JavaScript/TypeScript, Python, Go, Java/Kotlin, C#, PHP and Ruby test conventions.
+- Added findings for missing assertions, weak/tautological assertions, skipped tests, mock-only validation and unrecognized negative/edge scenarios.
+- Added explicit test-quality evidence controls to the Quality Score and AI-generated-test review requirements to the installable skill.
+- Added automated unit tests for the test auditor and documented that AI authorship cannot be reliably inferred from source text.
+
 ## Unreleased — initial foundation
 
 - Established the provider-neutral DevExcellence skill.

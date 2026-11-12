@@ -51,4 +51,8 @@ Nunca elevar a nota por ocultar achados, reduzir escopo silenciosamente ou deixa
 
 ## Cálculo operacional pelo CLI
 
-O CLI 0.1.0 calcula o score a partir de `.devexcellence/assessment.json` ou de um arquivo indicado por `--input`. Os estados permitidos são `pass` (100%), `partial` (50%), `fail` (0%), `not_applicable` (excluído mediante justificativa) e `not_assessed` (reduz a cobertura). O score é renormalizado pelos pesos avaliados. Cobertura inferior ao mínimo gera `PROVISIONAL`; achado crítico aberto gera `BLOCKED`; achado alto aberto gera `REVIEW_REQUIRED`. A ferramenta não verifica a veracidade da evidência fornecida e não certifica segurança ou conformidade.
+O CLI 0.2.0 calcula o score a partir de `.devexcellence/assessment.json` ou de um arquivo indicado por `--input`. Os estados permitidos são `pass` (100%), `partial` (50%), `fail` (0%), `not_applicable` (excluído mediante justificativa) e `not_assessed` (reduz a cobertura). O score é renormalizado pelos pesos avaliados. Cobertura inferior ao mínimo gera `PROVISIONAL`; achado crítico aberto gera `BLOCKED`; achado alto aberto gera `REVIEW_REQUIRED`. A ferramenta não verifica a veracidade da evidência fornecida e não certifica segurança ou conformidade.
+
+## Evidências da dimensão de testes
+
+Na avaliação, trate testes gerados por IA com o mesmo rigor aplicado a código de produção. Registre separadamente: auditoria de arquivos e assertions; ausência de tautologias/testes vazios; cenários negativos, limites e regressões; execução real, cobertura e mutation testing quando viável. A análise estática do CLI é um indicador, não substitui execução nem revisão do teste.

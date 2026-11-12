@@ -20,6 +20,8 @@ test("identifica stack e controles de estrutura",() => {
     assert.ok(r.stack.includes("Node.js/JavaScript/TypeScript"));
     assert.equal(r.results.find(x=>x.id==="PROJECT-006").status,"pass");
     assert.equal(r.results.find(x=>x.id==="PROJECT-007").status,"pass");
+    assert.ok(r.summary.testAudit);
+    assert.equal(r.scope.testFileAudit,true);
     assert.equal(shouldFail(r),false);
   } finally { fs.rmSync(root,{recursive:true,force:true}); }
 });

@@ -282,3 +282,21 @@ A task is complete only when requested behavior and acceptance criteria are addr
 ## Response style
 
 Be direct and actionable. Lead with critical issues. Explain why each finding matters and how to fix it. Do not overwhelm the developer with generic advice unrelated to the change. Make the skill increase delivery value rather than add ceremony.
+
+
+## Auditoria obrigatória de testes, inclusive os gerados por IA
+
+Trate arquivos de teste escritos por pessoas ou agentes de IA como código não confiável até revisão e execução. Não aceite um teste somente porque foi gerado, compilou ou passou uma vez.
+
+Ao revisar testes:
+- Confirme a relação de cada teste com um requisito, regra de negócio, defeito corrigido ou contrato observável.
+- Identifique testes vazios, sem assertions, assertions tautológicas, verificações genéricas e snapshots como única evidência.
+- Avalie mocks excessivos; valide também efeitos e resultados observáveis nas camadas adequadas.
+- Verifique testes ignorados, pendentes, TODOs e cenários negativos/limites relevantes.
+- Exija regressão que falhe antes da correção e passe depois, quando aplicável.
+- Para áreas críticas, recomende mutation testing e reporte mutantes sobreviventes.
+- Registre a execução real, comando, versão do runtime/framework, cobertura e limitações.
+- Nunca declare cobertura, execução ou efetividade que não tenha sido comprovada.
+- Não infira autoria humana/IA como fato somente pelo conteúdo. Avalie a qualidade e a efetividade, não a suposta origem.
+
+Use a checklist `checklists/TESTING.md` e considere os achados da auditoria estática do CLI como sinais para revisão, não como prova definitiva.

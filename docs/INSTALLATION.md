@@ -60,7 +60,7 @@ Consulte os comandos atuais do Skills CLI para verificar e atualizar skills inst
 
 ## CLI e CI/CD
 
-O CLI 0.1.0 está implementado como ferramenta local complementar e exige Node.js 20+. Após clonar o repositório, execute `node cli/bin/devexcellence.js help`. Para validar o próprio CLI: `cd cli && npm test`. O CLI ainda não está publicado no npm e não é requisito para utilizar a skill.
+O CLI 0.2.0 está implementado como ferramenta local complementar e exige Node.js 20+. Após clonar o repositório, execute `node cli/bin/devexcellence.js help`. Para validar o próprio CLI: `cd cli && npm test`. O CLI ainda não está publicado no npm e não é requisito para utilizar a skill.
 
 O workflow `.github/workflows/ci.yml` valida sintaxe, executa testes, verifica a integridade do pacote `skills/devexcellence/` e faz um smoke test em Node.js 20 e 22. A primeira execução foi concluída com sucesso nos dois ambientes: [ver execução no GitHub Actions](https://github.com/ylkias/DevExcellence/actions/runs/43272822390).
 

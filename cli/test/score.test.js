@@ -13,3 +13,10 @@ test("não aplicável exige justificativa e sai do denominador",()=>{const a=ass
 test("achado crítico aberto bloqueia",()=>{const a=assessment();a.findings=[{severity:"critical",status:"open",title:"IDOR confirmado"}];assert.equal(evaluateAssessment(a).releaseGate,"BLOCKED");});
 test("achado alto aberto exige revisão",()=>{const a=assessment();a.findings=[{severity:"high",status:"open",title:"Rate limit ausente"}];assert.equal(evaluateAssessment(a).releaseGate,"REVIEW_REQUIRED");});
 test("relatório mostra cobertura e limitação",()=>{const md=renderScoreMarkdown(evaluateAssessment(assessment()));assert.match(md,/Cobertura/);assert.match(md,/não é certificação/);});
+test("modelo inclui critérios específicos para testes produzidos por IA",()=>{
+  const a=createAssessmentTemplate("AI tests");
+  const d=a.dimensions.find(x=>x.id==="testing");
+  assert.deepEqual(d.controls.map(x=>x.id),["TEST-001","TEST-002","TEST-003","TEST-004"]);
+  assert.equal(d.controls.every(x=>x.status==="not_assessed"),true);
+  assert.equal(d.weight,15);
+});

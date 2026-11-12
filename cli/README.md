@@ -1,4 +1,4 @@
-# DevExcellence CLI 0.1.0
+# DevExcellence CLI 0.2.0
 
 CLI complementar à skill. Requer Node.js 20+ e não possui dependências de runtime.
 
@@ -17,11 +17,13 @@ Após clonar, os comandos podem ser encapsulados por script do projeto. O pacote
 
 ### check
 
-Faz verificações locais e heurísticas: detecção de stack, lockfile, README, licença, estrutura de testes, CI, proteção de arquivos `.env`, arquivos de ambiente rastreados pelo Git e padrões comuns de possíveis segredos.
+Faz verificações locais e heurísticas: detecção de stack, lockfile, README, licença, estrutura de testes, auditoria estática dos arquivos de teste, CI, proteção de arquivos `.env`, arquivos de ambiente rastreados pelo Git e padrões comuns de possíveis segredos.
 
-Opções: `--json`, `--output arquivo`, `--fail-on critical|high|medium|low|never`, `--run`, `--no-secrets`.
+Opções: `--json`, `--output arquivo`, `--fail-on critical|high|medium|low|never`, `--run`, `--no-secrets`, `--no-test-audit`.
 
-A varredura não é SAST/DAST, pentest ou auditoria completa de dependências. Valores que pareçam segredos não são incluídos no resultado. A varredura é heurística e limitada a arquivos de texto com tamanho controlado.
+A auditoria de testes procura casos sem assertions, assertions fracas/tautológicas, testes ignorados, mocks excessivos e ausência de cenários negativos/limites reconhecíveis. Ela não consegue comprovar a autoria por IA nem a efetividade real dos testes. A varredura de segredos não é SAST/DAST, pentest ou auditoria completa de dependências. Valores que pareçam segredos não são incluídos no resultado. A varredura é heurística e limitada a arquivos de texto com tamanho controlado.
+
+A auditoria estática dos arquivos de teste é executada por padrão; use `--fail-on high` para bloquear a partir da severidade alta ou `--no-test-audit` para desativá-la. Consulte [Auditoria de testes](../docs/TEST-AUDIT.md).
 
 Comandos externos só podem ser executados com `--run` e configuração explícita em `.devexcellence/config.json`, usando arrays `argv`; shell não é utilizado. Exemplo: [devexcellence.config.json](../examples/devexcellence.config.json). Revise comandos e permissões antes de habilitá-los.
 
@@ -30,6 +32,7 @@ Comandos externos só podem ser executados com `--run` e configuração explíci
 `init` cria `.devexcellence/assessment.json` com os pesos padrão e controles em estado `not_assessed`. Preencha as evidências e status antes de executar `score`.
 
 Estados: `pass` (100%), `partial` (50%), `fail` (0%), `not_applicable` (excluído com justificativa) e `not_assessed` (reduz a cobertura). Achado crítico aberto bloqueia o gate; achado alto aberto exige revisão; cobertura abaixo do limite mantém o resultado provisório.
+
 
 ## Códigos de saída
 

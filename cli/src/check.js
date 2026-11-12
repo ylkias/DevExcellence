@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
+import { auditTestFiles } from "./test-audit.js";
 
 const SKIP = new Set([".git", "node_modules", ".next", ".nuxt", "dist", "build", "coverage", ".turbo", ".venv", "vendor", "__pycache__"]);
 const TEXT_EXT = new Set([".js",".jsx",".mjs",".cjs",".ts",".tsx",".json",".yml",".yaml",".toml",".ini",".env",".py",".go",".rs",".java",".kt",".php",".rb",".cs",".sh",".ps1",".sql",".html",".css",".scss",".vue",".svelte",".md",".txt",".xml",".properties"]);
@@ -111,6 +112,10 @@ export function runProjectChecks(options = {}) {
   const ci = fs.existsSync(path.join(root, ".github", "workflows")) || [".gitlab-ci.yml","Jenkinsfile","azure-pipelines.yml"].some((x) => fs.existsSync(path.join(root, x)));
   add(results, "PROJECT-007", "Pipeline CI/CD", ci ? "info" : "medium", ci ? "pass" : "review", ci ? "Configuração localizada; não executada." : "Pipeline não localizada.");
   const inventory = walk(root);
+  const testAudit = options.testAudit === false
+    ? { summary: { files: 0, testCases: 0, assertions: 0, filesWithoutAssertions: 0, weakAssertionFiles: 0, skippedTests: 0, filesWithoutNegativeCases: 0 }, results: [] }
+    : auditTestFiles(inventory.files);
+  results.push(...testAudit.results);
   const trackedEnv = (() => {
     const r = spawnSync("git", ["ls-files", "--cached", "--", ".env", ".env.*"], { cwd: root, encoding: "utf8" });
     return !r.error && r.status === 0 ? r.stdout.trim().split(/\r?\n/).filter(Boolean) : [];
@@ -125,23 +130,25 @@ export function runProjectChecks(options = {}) {
   const threshold = options.failOn === "never" ? Infinity : RANK[options.failOn] ?? RANK.critical;
   const blocking = results.some((x) => ["fail","review"].includes(x.status) && RANK[x.severity] >= threshold);
   return {
-    tool: "DevExcellence CLI", version: "0.1.0", projectRoot: root, generatedAt: new Date().toISOString(), stack,
-    scope: { networkAccess: false, filesUploaded: false, secretPatternScan: options.includeSecrets !== false, configuredCommandsExecuted: Boolean(options.runCommands) },
-    summary: { checks: results.length, findings: results.filter((x) => ["fail","review"].includes(x.status)).length, gate: blocking ? "FAIL" : "PASS", failOn: options.failOn || "critical" },
+    tool: "DevExcellence CLI", version: "0.2.0", projectRoot: root, generatedAt: new Date().toISOString(), stack,
+    scope: { networkAccess: false, filesUploaded: false, secretPatternScan: options.includeSecrets !== false, testFileAudit: options.testAudit !== false, configuredCommandsExecuted: Boolean(options.runCommands) },
+    summary: { checks: results.length, findings: results.filter((x) => ["fail","review"].includes(x.status)).length, gate: blocking ? "FAIL" : "PASS", failOn: options.failOn || "critical", testAudit: testAudit.summary },
     results,
-    limitations: ["Varredura de segredos é heurística e pode gerar falsos positivos/negativos.", "Não executa SAST/DAST, pentest, análise completa de dependências ou teste de carga.", "Comandos externos só executam com opção explícita --run e configuração argv.", "Resultado não é certificação de segurança, qualidade ou conformidade."]
+    limitations: ["Varredura de segredos é heurística e pode gerar falsos positivos/negativos.", "Auditoria de testes é estática/heurística; não identifica com confiabilidade autoria IA/humana e não prova efetividade.", "Não executa SAST/DAST, pentest, análise completa de dependências, mutation testing automático ou teste de carga.", "Comandos externos só executam com opção explícita --run e configuração argv.", "Resultado não é certificação de segurança, qualidade ou conformidade."]
   };
 }
 export function shouldFail(report) { return report.summary.gate === "FAIL"; }
 export function renderCheckText(report) {
   return ["DevExcellence CLI " + report.version, "Projeto: " + report.projectRoot, "Stack: " + (report.stack.join(", ") || "não identificada"),
-    "Gate: " + report.summary.gate + " | Verificações: " + report.summary.checks + " | Itens para revisão: " + report.summary.findings, "",
+    "Gate: " + report.summary.gate + " | Verificações: " + report.summary.checks + " | Itens para revisão: " + report.summary.findings,
+    "Auditoria de testes: " + report.summary.testAudit.files + " arquivo(s), " + report.summary.testAudit.testCases + " caso(s), " + report.summary.testAudit.assertions + " assertion(s), " + report.summary.testAudit.filesWithoutAssertions + " arquivo(s) sem assertions, " + report.summary.testAudit.skippedTests + " teste(s) ignorado(s).", "",
     ...report.results.map((x) => "[" + x.status.toUpperCase() + "] " + x.id + " — " + x.title + " (" + x.severity + ")\n  " + x.evidence),
     "", "Limitações:", ...report.limitations.map((x) => "- " + x)].join("\n");
 }
 export function renderCheckMarkdown(report) {
   return ["# Relatório DevExcellence", "", "- Projeto: " + report.projectRoot, "- Gerado em: " + report.generatedAt,
-    "- Stack: " + (report.stack.join(", ") || "não identificada"), "- Gate: " + report.summary.gate, "",
+    "- Stack: " + (report.stack.join(", ") || "não identificada"), "- Gate: " + report.summary.gate,
+    "- Auditoria de testes: " + report.summary.testAudit.files + " arquivo(s), " + report.summary.testAudit.testCases + " caso(s), " + report.summary.testAudit.assertions + " assertion(s), " + report.summary.testAudit.filesWithoutAssertions + " arquivo(s) sem assertions, " + report.summary.testAudit.skippedTests + " teste(s) ignorado(s).", "",
     "| ID | Verificação | Severidade | Status | Evidência |", "|---|---|---|---|",
     ...report.results.map((x) => "| " + x.id + " | " + x.title.replaceAll("|","\\|") + " | " + x.severity + " | " + x.status + " | " + x.evidence.replaceAll("|","\\|").replaceAll("\n"," ") + " |"),
     "", "## Limitações", ...report.limitations.map((x) => "- " + x), ""].join("\n");

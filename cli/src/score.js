@@ -18,7 +18,12 @@ export function createAssessmentTemplate(project = "Meu projeto") {
     version: 1, project, profile: "web-application", assessedAt: new Date().toISOString(), minimumCoverage: 80,
     dimensions: DEFAULT_DIMENSIONS.map((d) => ({
       id: d.id, name: d.name, weight: d.weight,
-      controls: [{ id: d.id.toUpperCase() + "-001", title: "Registrar evidência: " + d.name, status: "not_assessed", evidence: "" }]
+      controls: d.id === "testing" ? [
+        { id: "TEST-001", title: "Auditoria dos arquivos de teste (incluindo testes gerados por IA)", status: "not_assessed", evidence: "" },
+        { id: "TEST-002", title: "Assertions significativas, sem tautologias ou testes vazios", status: "not_assessed", evidence: "" },
+        { id: "TEST-003", title: "Cenários negativos, limites e regressões", status: "not_assessed", evidence: "" },
+        { id: "TEST-004", title: "Execução real, cobertura e avaliação de mutation testing", status: "not_assessed", evidence: "" }
+      ] : [{ id: d.id.toUpperCase() + "-001", title: "Registrar evidência: " + d.name, status: "not_assessed", evidence: "" }]
     })),
     findings: []
   };

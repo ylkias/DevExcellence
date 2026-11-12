@@ -10,7 +10,7 @@ A DevExcellence define um protocolo neutro de coordenação que pode ser aplicad
 - **Segurança:** ameaças, segredos, autenticação, autorização e riscos OWASP.
 - **API:** rotas, contratos, validação, paginação, rate limit e exposição.
 - **Banco de dados:** schema, relacionamentos, transações, integridade, índices e ciclo de conexões.
-- **Testes:** TDD/BDD/ATDD, regressão e qualidade dos testes.
+- **Testes:** TDD/BDD/ATDD, regressão, auditoria de arquivos gerados por IA, assertions, mocks, casos negativos/borda e mutation testing.
 - **Performance:** perfilamento, concorrência, cache, gargalos e desenho de carga.
 - **Frontend/acessibilidade:** responsividade, fluxos, semântica e acessibilidade.
 - **Privacidade:** minimização, retenção, exposição e controles de dados pessoais.
