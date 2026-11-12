@@ -1,0 +1,10 @@
+{
+  "name":"@devexcellence/cli",
+  "version":"0.1.0",
+  "private":true,
+  "license":"UNLICENSED",
+  "type":"module",
+  "bin":{"devexcellence":"./bin/devexcellence.js"},
+  "engines":{"node":">=20"},
+  "scripts":{"test":"node --test","check":"node ./bin/devexcellence.js check"}
+}

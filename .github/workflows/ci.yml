@@ -1,0 +1,35 @@
+name: DevExcellence CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    name: Node ${{ matrix.node }} validation
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [20, 22]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Validate JavaScript syntax
+        run: |
+          node --check cli/bin/devexcellence.js
+          node --check cli/src/check.js
+          node --check cli/src/score.js
+          node --check scripts/validate-skill-package.mjs
+      - name: Run CLI unit tests
+        working-directory: cli
+        run: npm test
+      - name: Validate installable Agent Skill package
+        run: node scripts/validate-skill-package.mjs
+      - name: CLI smoke test
+        run: node cli/bin/devexcellence.js check --fail-on never --no-secrets --json

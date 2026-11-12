@@ -48,3 +48,7 @@ A faixa é informativa, não uma certificação.
 Apresente score global, score por dimensão, cobertura da avaliação, quantidade de achados por severidade, itens não verificados, pesos/perfil usados e bloqueios de release.
 
 Nunca elevar a nota por ocultar achados, reduzir escopo silenciosamente ou deixar verificações sem execução.
+
+## Cálculo operacional pelo CLI
+
+O CLI 0.1.0 calcula o score a partir de `.devexcellence/assessment.json` ou de um arquivo indicado por `--input`. Os estados permitidos são `pass` (100%), `partial` (50%), `fail` (0%), `not_applicable` (excluído mediante justificativa) e `not_assessed` (reduz a cobertura). O score é renormalizado pelos pesos avaliados. Cobertura inferior ao mínimo gera `PROVISIONAL`; achado crítico aberto gera `BLOCKED`; achado alto aberto gera `REVIEW_REQUIRED`. A ferramenta não verifica a veracidade da evidência fornecida e não certifica segurança ou conformidade.

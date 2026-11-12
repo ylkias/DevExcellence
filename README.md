@@ -4,7 +4,7 @@
 
 A DevExcellence ajuda desenvolvedores e agentes de IA a compreender uma base de código, planejar alterações, implementar soluções completas, validar qualidade, reduzir riscos de segurança e apresentar evidências dos resultados. Foi projetada para funcionar com diferentes provedores de LLM, editores, linguagens, frameworks e ambientes de desenvolvimento.
 
-> Status: desenvolvimento inicial. A skill orienta o trabalho de engenharia; ferramentas determinísticas e verificações de CI fornecem evidências reproduzíveis. Nenhum teste ou scanner deve ser declarado como aprovado sem ter sido realmente executado.
+> Status: skill principal disponível no pacote Agent Skills; CLI local 0.1.0 implementado e testes automatizados adicionados. O workflow de CI foi configurado, mas a primeira execução ainda precisa ser confirmada. Nenhum teste ou scanner deve ser declarado como aprovado sem ter sido realmente executado.
 
 ## Propósito principal
 
@@ -59,7 +59,7 @@ A skill deve ser utilizada antes da implementação, durante a codificação e d
 - `docs/`: documentação de instalação, arquitetura, modos de operação, metodologias, multiagentes, relatórios, escalabilidade e seleção adaptativa.
 - `templates/`: modelos de relatório de auditoria, plano de implementação e registro de achados.
 - `examples/`: exemplos de achados e prompts reutilizáveis.
-- `cli/`: escopo planejado do CLI determinístico.
+- `cli/`: CLI local 0.1.0, testes unitários e documentação.
 - `CHANGELOG.md`, `CONTRIBUTING.md` e `SECURITY.md`: histórico, diretrizes de contribuição e política de segurança.
 
 ## Instalação rápida
@@ -72,11 +72,24 @@ npx skills add https://github.com/ylkias/DevExcellence --skill devexcellence
 
 O repositório disponibiliza a skill em `skills/devexcellence/`, com seus checklists, referências e modelos de relatório no mesmo pacote. Essa estrutura é descoberta pelo Skills CLI. O instalador permite selecionar um agente de IA compatível e o escopo da instalação. Consulte [docs/INSTALLATION.md](docs/INSTALLATION.md) para orientações sobre autenticação em repositórios privados, instalação global e alternativas manuais.
 
+## CLI complementar
+
+O CLI 0.1.0 funciona com Node.js 20+ e não possui dependências de runtime. Execute a partir da raiz:
+
+```bash
+node cli/bin/devexcellence.js help
+node cli/bin/devexcellence.js check
+node cli/bin/devexcellence.js init
+node cli/bin/devexcellence.js score
+```
+
+O `check` executa verificações locais heurísticas; `init` gera uma avaliação e `score` calcula o Quality Score com base nas evidências declaradas. Consulte [docs/CLI.md](docs/CLI.md) e [cli/README.md](cli/README.md). O CLI não foi publicado no npm.
+
 ## Escopo e limitações atuais
 
 - A skill pode orientar projetos em diferentes stacks, mas as verificações reais dependem das ferramentas instaladas e das permissões concedidas.
-- O CLI está planejado como uma camada determinística independente e ainda não foi implementado.
-- A execução multiagente é opcional; um único agente deve conseguir executar todo o fluxo.
+- O CLI 0.1.0 foi implementado como camada local complementar; não executa SAST/DAST, pentest, scanner completo de dependências ou testes de carga.
+- A documentação define um protocolo opcional multiagente; o repositório não inclui runtime executável de orquestração. Um único agente deve conseguir executar todo o fluxo.
 - Uma meta de 5.000 usuários simultâneos precisa ser definida como uma carga mensurável e comprovada por testes de carga. Ela não é garantida apenas por uma revisão de arquitetura.
 - O repositório permanece privado durante o desenvolvimento inicial. Antes de torná-lo público, escolha uma licença open source explícita e revise os termos de contribuição.
 

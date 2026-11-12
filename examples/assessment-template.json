@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "project": "Nome do projeto",
+  "profile": "web-application",
+  "assessedAt": "2026-11-12T00:00:00.000Z",
+  "minimumCoverage": 80,
+  "dimensions": [
+    {
+      "id": "security",
+      "name": "Segurança e controle de acesso",
+      "weight": 20,
+      "controls": [
+        {
+          "id": "SEC-001",
+          "title": "Autorização server-side validada por testes",
+          "status": "not_assessed",
+          "evidence": ""
+        }
+      ]
+    }
+  ],
+  "findings": []
+}

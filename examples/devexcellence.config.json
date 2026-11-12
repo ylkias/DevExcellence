@@ -1,0 +1,6 @@
+{
+  "commands": [
+    { "name": "Testes", "argv": ["yarn", "test"], "required": true, "timeoutMs": 180000 },
+    { "name": "Verificação de tipos", "argv": ["yarn", "tsc", "--noEmit"], "required": true, "timeoutMs": 180000 }
+  ]
+}

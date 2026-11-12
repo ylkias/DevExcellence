@@ -1,4 +1,8 @@
-# Local DevExcellence artifacts may contain internal paths or security findings
+# Local DevExcellence artifacts can contain internal paths and security findings
+.env
+.env.*
+!.env.example
+.devexcellence/assessment.json
 .devexcellence/reports/
 .devexcellence/cache/
 .devexcellence/tmp/
