@@ -12,6 +12,14 @@ Multi-agent execution can improve parallel review on larger changes, but it is n
 - Database: schema, relationships, query safety, transactions, indexes, and connection lifecycle.
 - Testing: test strategy, TDD/BDD/ATDD scenarios, regression, and test quality.
 - Performance: profiling, caching, concurrency, bottlenecks, and load-test design.
+- Frontend and Accessibility: interaction flows, responsive behavior, usability, and accessibility requirements.
+- Privacy: personal-data inventory, minimization, retention, exposure, and privacy controls; legal interpretation remains with the organization's responsible experts.
+- Resilience: dependency failures, retries, timeouts, queues, recovery, and fault isolation.
+- Observability: logs, metrics, traces, SLOs, alerting, and auditability.
+- Supply Chain: dependency risk, lockfiles, provenance, SBOM, and artifact integrity.
+- Backup and Recovery: backup policy, restore tests, RPO/RTO, and disaster recovery.
+- Internationalization: locale, timezone, currency, Unicode, and country-specific formats.
+- Delivery and Infrastructure: environment configuration, containers, CI/CD, rollout, and rollback.
 - Documentation: setup, API, operational notes, and change records.
 
 ## Specialist output contract
