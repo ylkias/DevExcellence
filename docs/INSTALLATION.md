@@ -1,72 +1,63 @@
-# Installation and compatibility
+# Instalação e compatibilidade
 
-DevExcellence follows the open Agent Skills directory format: a skill directory contains a `SKILL.md` with YAML frontmatter including a unique lowercase `name` and a useful `description`.
+A skill principal está em `skills/devexcellence/`, no formato Agent Skills: um diretório de skill contém `SKILL.md` com frontmatter YAML e os arquivos auxiliares necessários. Essa estrutura evita que o instalador selecione uma instrução genérica na raiz e deixe de levar os checklists e templates junto.
 
-The repository root currently acts as the skill directory. The Skills CLI supports a repository-root `SKILL.md`, so a separate wrapper directory is not required for the initial single-skill package.
+## Instalação recomendada: Skills CLI
 
-## Recommended: install with Skills CLI
+Requisitos: Node.js compatível com a versão atual do Skills CLI. Consulte a documentação oficial do instalador para os requisitos vigentes.
 
-Requirements: Node.js compatible with the current Skills CLI release. The upstream project currently documents Node.js 22.20 or later.
-
-Install the named skill:
-
-```bash
-npx skills add https://github.com/ylkias/DevExcellence --skill devexcellence
-```
-
-List available skills before installing:
+Para listar as skills detectadas no repositório:
 
 ```bash
 npx skills add https://github.com/ylkias/DevExcellence --list
 ```
 
-Install globally (available across projects):
+Para instalar a DevExcellence:
+
+```bash
+npx skills add https://github.com/ylkias/DevExcellence --skill devexcellence
+```
+
+Para instalar globalmente, em vez de somente no projeto atual:
 
 ```bash
 npx skills add https://github.com/ylkias/DevExcellence --skill devexcellence --global
 ```
 
-Target a particular supported agent:
+Para direcionar a instalação a um agente específico, use o identificador suportado pelo CLI:
 
 ```bash
 npx skills add https://github.com/ylkias/DevExcellence --skill devexcellence --agent claude-code
 ```
 
-The interactive installer can also let the developer choose the available agents and project/global installation scope. Agent support and installation paths are maintained by the Skills CLI and may change over time.
+O instalador pode permitir a seleção interativa dos agentes e do escopo. A lista de agentes e os caminhos de instalação dependem da versão do Skills CLI.
 
-## Private repository during development
+## Repositório privado durante o desenvolvimento
 
-The DevExcellence repository is private during initial development. Only users who already have repository access and Git authentication configured can install it.
+Enquanto o repositório estiver privado, somente colaboradores com acesso e autenticação Git configurada poderão instalar a skill.
 
-The Skills CLI uses the Git credentials already configured for the repository URL. For GitHub HTTPS/shorthand sources it can use normal Git credentials, GitHub CLI authentication, or SSH fallback. Before installing, authenticate using the developer's normal GitHub workflow, for example:
+Autentique-se pelo fluxo normal do GitHub CLI:
 
 ```bash
 gh auth login
 ```
 
-Then run the installation command above. Alternatively, configure Git SSH access and use the SSH repository URL supported by the CLI.
+Depois execute o comando de instalação. Também é possível usar autenticação SSH do Git, conforme a configuração da máquina.
 
-Do not put a personal access token directly in a command, README, shell history, or project file. The CLI also supports explicitly supplied `GITHUB_TOKEN` or `GH_TOKEN` for GitHub API access; prefer the user's existing secure credential manager where possible.
+Não coloque Personal Access Tokens diretamente nos comandos, no README, no histórico do shell ou em arquivos do projeto. Prefira o gerenciador seguro de credenciais já utilizado pelo desenvolvedor.
 
-When the repository becomes public, anyone can run the same installation command without private-repository permissions.
+Quando o repositório se tornar público, qualquer pessoa poderá utilizar o mesmo comando sem precisar de autorização privada.
 
-## Manual installation
+## Instalação manual
 
-If a host agent does not support the Skills CLI, clone or download the repository and follow that agent's current documentation for its skill/instruction directory. Copy the repository's skill contents together so that `SKILL.md` can resolve its supporting `checklists/`, `docs/`, and `templates/` files.
+Se o agente não suportar o Skills CLI, clone ou baixe o repositório e siga a documentação do agente para instalar uma skill. Copie toda a pasta `skills/devexcellence/`, preservando `SKILL.md`, `checklists/`, `references/` e `templates/`.
 
-The editor is not the agent: VS Code extensions, terminal agents, and hosted LLM products may use different discovery paths. Do not assume one universal folder for all products.
+O editor não é necessariamente o agente. Extensões diferentes do VS Code, agentes de terminal e serviços de LLM podem usar caminhos de descoberta diferentes.
 
-## Project-local versus global
+## Atualização e reprodutibilidade
 
-- Project-local installation is appropriate when a team wants a skill available in one repository and shareable with collaborators.
-- Global installation is appropriate when the developer wants the skill across multiple projects.
+Consulte os comandos atuais do Skills CLI para verificar e atualizar skills instaladas. Em ambientes críticos, prefira uma versão/tag revisada ou commit fixado, quando suportado, e revise as notas de versão antes de atualizar.
 
-Use the installation scope offered by the CLI and verify the skill appears in the selected agent.
+## CLI e CI/CD
 
-## Updates and reproducibility
-
-Use the Skills CLI's update command to check or update installed skills. For critical engineering environments, pin a reviewed release tag or commit when the workflow supports it, and review release notes before updating.
-
-## CLI and CI/CD
-
-The DevExcellence CLI is a complementary deterministic execution layer, not a requirement for using the skill. Once implemented and released, it will provide repeatable local and CI checks. The skill itself must remain useful without the CLI.
+O CLI da DevExcellence é uma camada complementar de execução determinística, não um requisito para utilizar a skill. Quando implementado e publicado, deverá oferecer verificações locais e em CI reproduzíveis. A skill precisa continuar útil sem o CLI.
