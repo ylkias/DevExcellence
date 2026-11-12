@@ -1,0 +1,4 @@
+# Local DevExcellence artifacts may contain internal paths or security findings
+.devexcellence/reports/
+.devexcellence/cache/
+.devexcellence/tmp/
