@@ -73,6 +73,52 @@ When approved by the project owner, store persistent local reports under .devexc
 
 Use the domain checklists in checklists/ as applicable.
 
+## Seleção adaptativa dos módulos
+
+Antes de iniciar a revisão, identifique o perfil e o contexto da aplicação. Não execute todos os checklists por padrão: selecione o conjunto mínimo que oferece cobertura relevante e acrescente módulos conforme riscos e funcionalidades encontrados.
+
+### Verificações-base
+
+Aplicáveis a qualquer projeto com código executável:
+- Qualidade e completude lógica.
+- Segurança proporcional à superfície de ataque.
+- Testes coerentes com a mudança.
+- Tratamento de erros e recursos.
+- Dependências e segredos, quando houver ferramentas disponíveis.
+- Documentação e relatório de evidências.
+
+### Perfis e módulos adicionais
+
+| Perfil ou característica | Módulos a considerar |
+|---|---|
+| API ou backend | API, SECURITY, DATABASE, INTEGRITY, RESILIENCE, OBSERVABILITY |
+| Aplicação web com interface | FRONTEND-UX, FORMATTING, API, SECURITY, INTERNATIONALIZATION |
+| Aplicativo mobile | FRONTEND-UX, FORMATTING, SECURITY, RESILIENCE, INTERNATIONALIZATION |
+| SaaS multiempresa | SECURITY, DATABASE, INTEGRITY, PRIVACY-LGPD, API, OBSERVABILITY |
+| Sistema financeiro ou transacional | INTEGRITY, DATABASE, SECURITY, RESILIENCE, TESTING |
+| Processamento assíncrono ou mensageria | INTEGRITY, RESILIENCE, OBSERVABILITY, PERFORMANCE |
+| Aplicação com dados pessoais | PRIVACY-LGPD, SECURITY, OBSERVABILITY, BACKUP-RECOVERY |
+| Projeto que gera ou distribui artefatos | SUPPLY-CHAIN, DELIVERY, SECURITY |
+| Serviço crítico ou de alta disponibilidade | RESILIENCE, OBSERVABILITY, BACKUP-RECOVERY, PERFORMANCE |
+| Projeto internacional ou multi-país | INTERNATIONALIZATION, FORMATTING, DATABASE, API |
+| Aplicação que será implantada em produção | DELIVERY, SUPPLY-CHAIN, OBSERVABILITY, BACKUP-RECOVERY |
+
+A tabela é uma orientação, não uma regra rígida. Aplique o que fizer sentido para a arquitetura real e explique exclusões relevantes.
+
+### Regras de seleção
+
+1. Descubra se o projeto é biblioteca, API, web, mobile, desktop, worker, infraestrutura ou combinação.
+2. Identifique dados tratados, perfis de usuário, integrações, exposição à internet, criticidade e ambiente de implantação.
+3. Selecione módulos aplicáveis e registre o motivo.
+4. Marque itens irrelevantes como **Não aplicável**, com justificativa. Não os marque como aprovados.
+5. Marque itens sem evidência como **Não verificado** ou **Bloqueado**.
+6. Reavalie a seleção quando a implementação revelar novos riscos.
+7. Para projetos pequenos, mantenha a execução enxuta; não invoque agentes especialistas sem benefício claro.
+
+### Quality Score e gates
+
+Use `checklists/QUALITY-SCORE.md` para calcular pontuação somente quando houver evidência suficiente. O relatório deve apresentar score por dimensão, cobertura da avaliação, achados por severidade e itens não verificados. Um score alto não elimina gates: achado crítico aberto bloqueia aprovação para release. Não chame a pontuação de certificação ou garantia de segurança.
+
 ### 1. Requirements and architecture
 - Identify actors, use cases, business rules, invariants, and acceptance criteria.
 - Respect established architecture unless a documented defect justifies change.
@@ -213,7 +259,7 @@ Update API documentation, environment variables, setup steps, migration notes, a
 
 ## Multi-agent operation (optional)
 
-A coordinator may delegate bounded reviews to specialist agents: Architecture, Code Quality, Security, API, Database, Testing, Performance, and Documentation. Each specialist returns findings with evidence, confidence, severity, and recommendations. The coordinator deduplicates findings, resolves contradictions, prioritizes work, and owns the final report. Do not spawn agents when the task is small or delegation costs exceed the benefit. All agents follow this same skill and the host platform's permission boundaries.
+A coordinator may delegate bounded reviews to specialist agents: Architecture, Code Quality, Security, API, Database, Testing, Performance, Frontend/Accessibility, Privacy, Resilience, Observability, Supply Chain, and Documentation. Each specialist returns findings with evidence, confidence, severity, and recommendations. The coordinator deduplicates findings, resolves contradictions, prioritizes work, and owns the final report. Do not spawn agents when the task is small or delegation costs exceed the benefit. All agents follow this same skill and the host platform's permission boundaries.
 
 ## Severity and confidence
 
