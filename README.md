@@ -15,7 +15,7 @@ DevExcellence must remain lightweight to adopt and useful to individual develope
 ## What it helps with
 
 - Understand an existing project before changing it.
-- Plan work against requirements and acceptance criteria.
+- Validate requirements, acceptance criteria, and architecture before code generation.
 - Detect incomplete logic, dead code, unsafe shortcuts, duplication, and obsolete code.
 - Review authentication, authorization, sessions, roles, permissions, and audit trails.
 - Find risky API routes, unintended public endpoints, missing validation, pagination, and rate limits.
@@ -27,18 +27,18 @@ DevExcellence must remain lightweight to adopt and useful to individual develope
 
 ## Principles
 
-1. **Skill first:** understand the request and establish engineering criteria before code generation.
+1. **Skill first:** establish engineering criteria before implementation.
 2. **Validate continuously:** review changes as they are made, not only at the end.
 3. **Evidence over claims:** never invent test, scanner, or load-test results.
 4. **Minimal necessary change:** preserve existing behavior and project conventions.
 5. **Secure by default:** enforce authorization on the server and validate trust boundaries.
 6. **Stack agnostic:** discover the project's actual tools; do not force a preferred stack.
 7. **LLM agnostic:** keep core guidance provider-neutral and use adapters only where required.
-8. **Efficient context:** read only relevant material, summarize evidence, and avoid redundant model calls without skipping important checks.
+8. **Efficient context:** avoid redundant reads and model calls without skipping important checks.
 9. **Human control:** request approval for destructive, external, costly, or out-of-scope actions.
 10. **Transparent reporting:** distinguish confirmed findings, hypotheses, and unverified areas.
 
-## How it works
+## Lifecycle
 
 1. Discover project instructions, architecture, language, framework, tooling, and Git state.
 2. Convert the request into requirements, risks, and acceptance criteria.
@@ -48,24 +48,17 @@ DevExcellence must remain lightweight to adopt and useful to individual develope
 6. Run applicable deterministic checks and security reviews.
 7. Inspect the final diff and generate a report.
 
-The skill should be invoked before implementation and throughout the development lifecycle. A CI/CD integration can act as an additional enforcement layer; a prompt alone cannot guarantee that every change is validated.
+The skill is designed to be used before implementation, during coding, and after changes. A CI/CD integration can act as an additional enforcement layer; a prompt alone cannot guarantee that every change is validated.
 
 ## Repository layout
 
-```text
-DevExcellence/
-├── SKILL.md
-├── README.md
-├── CHANGELOG.md
-├── CONTRIBUTING.md
-├── SECURITY.md
-├── LICENSE
-├── checklists/
-├── docs/
-├── templates/
-├── examples/
-└── cli/
-```
+- `SKILL.md`: core, provider-neutral skill instructions.
+- `checklists/`: code quality, security, API, database, testing, and performance checklists.
+- `docs/`: installation, architecture, operating modes, methods, multi-agent orchestration, reporting, and scalability.
+- `templates/`: audit report, implementation plan, and reusable finding templates.
+- `examples/`: sample findings and reusable prompts.
+- `cli/`: planned deterministic CLI scope.
+- `CHANGELOG.md`, `CONTRIBUTING.md`, and `SECURITY.md`: project governance.
 
 ## Installation
 
@@ -75,8 +68,9 @@ See [docs/INSTALLATION.md](docs/INSTALLATION.md). Installation paths and discove
 
 - The skill can guide any stack, but actual checks depend on tools installed and permissions granted.
 - The CLI is planned as a separate deterministic execution layer and is not yet implemented.
+- Multi-agent execution is optional; a single agent can execute the complete workflow.
 - A target of 5,000 concurrent users must be defined as a measurable workload and proven through load testing; it is not guaranteed by architecture review alone.
-- The repository is private during initial development. Choose and add an explicit open-source license before making it public.
+- The repository is private during initial development. Choose an explicit open-source license and review contribution terms before making it public.
 
 ## Contributing
 
