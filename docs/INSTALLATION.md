@@ -1,67 +1,42 @@
-# Instalação e compatibilidade
+# Instalação e uso da DevExcellence
 
-A skill principal está em `skills/devexcellence/`, no formato Agent Skills: um diretório de skill contém `SKILL.md` com frontmatter YAML e os arquivos auxiliares necessários. Essa estrutura evita que o instalador selecione uma instrução genérica na raiz e deixe de levar os checklists e templates junto.
+## Um único comando
 
-## Instalação recomendada: Skills CLI
+Pré-requisito: Node.js compatível com a versão atual do Skills CLI. A documentação atual do CLI informa Node.js 22.20 ou superior.
 
-Requisitos: Node.js compatível com a versão atual do Skills CLI. Consulte a documentação oficial do instalador para os requisitos vigentes.
-
-Para listar as skills detectadas no repositório:
+Execute uma única vez no terminal:
 
 ```bash
-npx skills add https://github.com/ylkias/DevExcellence --list
+npx skills add https://github.com/ylkias/DevExcellence --skill devexcellence --agent '*' --global --yes
 ```
 
-Para instalar a DevExcellence:
+O comando instala a DevExcellence globalmente para todos os agentes compatíveis detectados pelo Skills CLI, sem perguntas interativas.
 
-```bash
-npx skills add https://github.com/ylkias/DevExcellence --skill devexcellence
-```
+## Começar a usar
 
-Para instalar globalmente, em vez de somente no projeto atual:
+1. Abra ou recarregue seu agente de programação (Claude Code, Codex, Cursor ou outro agente compatível).
+2. Entre em qualquer projeto e solicite a tarefa normalmente: "implemente esta funcionalidade", "corrija este erro", "revise a segurança" ou "analise a performance".
+3. A skill conduz o fluxo de engenharia e seleciona o contexto/checklists pertinentes automaticamente.
 
-```bash
-npx skills add https://github.com/ylkias/DevExcellence --skill devexcellence --global
-```
+**Não é necessário clonar o repositório DevExcellence, instalar o CLI, executar `context-plan` ou chamar um comando especial antes de cada tarefa.** O comando de instalação é a única etapa de instalação da skill.
 
-Para direcionar a instalação a um agente específico, use o identificador suportado pelo CLI:
+## Acesso ao repositório privado
 
-```bash
-npx skills add https://github.com/ylkias/DevExcellence --skill devexcellence --agent claude-code
-```
+Enquanto `ylkias/DevExcellence` permanecer privado, cada usuário precisa ter permissão de leitura e autenticação GitHub configurada na máquina. Pode usar a sessão existente do GitHub CLI (`gh auth login`), credenciais Git seguras ou SSH. Faça essa autenticação uma única vez por máquina; não coloque tokens diretamente no comando, README ou histórico do shell.
 
-O instalador pode permitir a seleção interativa dos agentes e do escopo. A lista de agentes e os caminhos de instalação dependem da versão do Skills CLI.
+O comando único funciona para todos os colaboradores autorizados. Para permitir instalação por qualquer pessoa sem autenticação, o repositório precisaria ser público ou a skill teria de ser distribuída por outro canal autorizado.
 
-## Repositório privado durante o desenvolvimento
+## Atualização
 
-Enquanto o repositório estiver privado, somente colaboradores com acesso e autenticação Git configurada poderão instalar a skill.
+Para atualizar uma instalação global, use o gerenciador de Skills CLI e atualize a skill DevExcellence. Em ambientes críticos, revise a versão/commit antes de distribuir atualizações para a equipe.
 
-Autentique-se pelo fluxo normal do GitHub CLI:
+## Compatibilidade e limites
 
-```bash
-gh auth login
-```
+- O Skills CLI instala os arquivos da skill; ele não concede novas permissões ao agente.
+- A leitura de arquivos, execução de Git, testes, scanners e alterações dependem das ferramentas e permissões do agente utilizado.
+- Se o agente não identificar a skill após a instalação, feche e reabra/recarregue o agente e confira se ele está entre os agentes suportados pelo Skills CLI.
+- O CLI local da DevExcellence é opcional para mantenedores e CI/CD; não faz parte do uso básico da skill.
 
-Depois execute o comando de instalação. Também é possível usar autenticação SSH do Git, conforme a configuração da máquina.
+## CLI e CI/CD para mantenedores
 
-Não coloque Personal Access Tokens diretamente nos comandos, no README, no histórico do shell ou em arquivos do projeto. Prefira o gerenciador seguro de credenciais já utilizado pelo desenvolvedor.
-
-Quando o repositório se tornar público, qualquer pessoa poderá utilizar o mesmo comando sem precisar de autorização privada.
-
-## Instalação manual
-
-Se o agente não suportar o Skills CLI, clone ou baixe o repositório e siga a documentação do agente para instalar uma skill. Copie toda a pasta `skills/devexcellence/`, preservando `SKILL.md`, `checklists/`, `references/` e `templates/`.
-
-O editor não é necessariamente o agente. Extensões diferentes do VS Code, agentes de terminal e serviços de LLM podem usar caminhos de descoberta diferentes.
-
-## Atualização e reprodutibilidade
-
-Consulte os comandos atuais do Skills CLI para verificar e atualizar skills instaladas. Em ambientes críticos, prefira uma versão/tag revisada ou commit fixado, quando suportado, e revise as notas de versão antes de atualizar.
-
-## CLI e CI/CD
-
-O CLI 0.3.0 está implementado como ferramenta local complementar e exige Node.js 20+. Após clonar o repositório, execute `node cli/bin/devexcellence.js help`. Para validar o próprio CLI: `cd cli && npm test`. Antes de publicar/deployar, execute `node cli/bin/devexcellence.js production-audit --path ./dist` apontando para o artefato real. O CLI ainda não está publicado no npm e não é requisito para utilizar a skill.
-
-O workflow `.github/workflows/ci.yml` valida sintaxe, executa testes, verifica a integridade do pacote `skills/devexcellence/` e faz um smoke test em Node.js 20 e 22. A primeira execução foi concluída com sucesso nos dois ambientes: [ver execução no GitHub Actions](https://github.com/ylkias/DevExcellence/actions/runs/43272822390).
-
-A instalação real pelo Skills CLI em repositório privado depende da autenticação GitHub do usuário e ainda precisa ser verificada no ambiente consumidor.
+O CLI 0.4.0 requer Node.js 20+ e permanece como ferramenta separada para verificações determinísticas, auditoria estática e gate de artefatos. Ele não é instalado pelo comando acima e não é necessário para a utilização cotidiana da skill. Consulte [CLI.md](CLI.md) e [TOKEN-EFFICIENCY.md](TOKEN-EFFICIENCY.md) para desenvolvimento do próprio produto.

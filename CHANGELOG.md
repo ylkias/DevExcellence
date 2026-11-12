@@ -6,6 +6,7 @@
 - Added the provider-neutral token-efficiency protocol covering progressive context loading, local deterministic tools, evidence reuse, bounded outputs, and model/delegation discipline.
 - Added approximate checklist-size reporting with an explicit warning that it is not provider token usage.
 - Added automated tests for path selection, broad mode, estimates, and Git changed/untracked file discovery.
+- Simplified end-user onboarding to one global installation command for all detected compatible agents; token/context optimization now runs as part of the skill without requiring the separate CLI.
 
 
 ## 0.3.0 — bloqueio de arquivos de teste em produção

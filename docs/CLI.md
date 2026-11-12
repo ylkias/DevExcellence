@@ -2,7 +2,7 @@
 
 ## Papel na arquitetura
 
-A skill continua sendo o produto principal e pode ser usada sem CLI. O CLI 0.4.0 é uma camada local e determinística para coletar verificações reproduzíveis e calcular um score a partir de evidências estruturadas.
+A skill continua sendo o produto principal. O CLI 0.4.0 é uma ferramenta separada e opcional para mantenedores e pipelines. Ele não é incluído na instalação pelo Skills CLI e não é necessário para o usuário final.
 
 ## Requisitos
 
@@ -12,7 +12,7 @@ A skill continua sendo o produto principal e pode ser usada sem CLI. O CLI 0.4.0
 
 ## Planejamento de contexto para reduzir tokens
 
-O comando `context-plan` analisa arquivos alterados (staged, unstaged e untracked) e recomenda apenas os checklists correspondentes aos caminhos e riscos reconhecidos. QUALITY, SECURITY e TESTING permanecem como módulos-base. Informe caminhos com `--file` ou use `--all` em auditorias amplas. A estimativa de tokens usa bytes/4 e é somente indicativa; o consumo real deve ser obtido pelas métricas do provedor. Consulte [TOKEN-EFFICIENCY.md](TOKEN-EFFICIENCY.md).
+O planejamento de contexto é aplicado automaticamente pela skill a partir dos arquivos alterados e riscos identificados. O comando abaixo existe apenas para mantenedores que clonaram o repositório DevExcellence e querem inspecionar a heurística; ele não deve ser executado pelo usuário final. A estimativa usa bytes/4 e não representa uso real de tokens. Consulte [TOKEN-EFFICIENCY.md](TOKEN-EFFICIENCY.md).
 
 ```bash
 node cli/bin/devexcellence.js context-plan

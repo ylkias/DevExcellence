@@ -68,34 +68,19 @@ A skill deve ser utilizada antes da implementação, durante a codificação e d
 Instale diretamente do GitHub usando o Skills CLI:
 
 ```bash
-npx skills add https://github.com/ylkias/DevExcellence --skill devexcellence
+npx skills add https://github.com/ylkias/DevExcellence --skill devexcellence --agent '*' --global --yes
 ```
 
-O repositório disponibiliza a skill em `skills/devexcellence/`, com seus checklists, referências e modelos de relatório no mesmo pacote. Essa estrutura é descoberta pelo Skills CLI. O instalador permite selecionar um agente de IA compatível e o escopo da instalação. Consulte [docs/INSTALLATION.md](docs/INSTALLATION.md) para orientações sobre autenticação em repositórios privados, instalação global e alternativas manuais.
+A instalação acima disponibiliza a DevExcellence globalmente para todos os agentes compatíveis detectados pelo Skills CLI. Depois, basta abrir/recarregar o agente e pedir tarefas de desenvolvimento normalmente: a seleção de contexto e a economia de tokens são aplicadas automaticamente pela skill. **Não é necessário executar `context-plan`, `check` ou outro comando DevExcellence para começar a usar.** Cada usuário precisa ter acesso de leitura ao repositório enquanto ele permanecer privado. Consulte [docs/INSTALLATION.md](docs/INSTALLATION.md) apenas para autenticação e solução de problemas.
 
-## CLI complementar
+## Ferramentas complementares (opcionais)
 
-O CLI 0.4.0 funciona com Node.js 20+ e não possui dependências de runtime. O comando de release `production-audit` deve ser obrigatório no pipeline de deploy. Execute a partir da raiz:
-
-```bash
-node cli/bin/devexcellence.js help
-node cli/bin/devexcellence.js check
-node cli/bin/devexcellence.js init
-node cli/bin/devexcellence.js score
-
-# Seleciona somente os checklists pertinentes ao diff
-node cli/bin/devexcellence.js context-plan
-
-# Obrigatório após o build, antes de publicar/deployar
-node cli/bin/devexcellence.js production-audit --path ./dist
-```
-
-O `check` executa verificações locais heurísticas e audita os arquivos de teste por padrão; `init` gera uma avaliação e `score` calcula o Quality Score com base nas evidências declaradas. Após o build, `production-audit` bloqueia a publicação quando o artefato contém arquivos/diretórios de teste. O comando `context-plan` seleciona checklists com base nos arquivos alterados; use `--all` para uma auditoria ampla. A estimativa de tokens é aproximada, não uma medição de uso do provedor. Consulte [docs/TOKEN-EFFICIENCY.md](docs/TOKEN-EFFICIENCY.md), [docs/CLI.md](docs/CLI.md), [docs/TEST-AUDIT.md](docs/TEST-AUDIT.md), [docs/PRODUCTION-ARTIFACT-AUDIT.md](docs/PRODUCTION-ARTIFACT-AUDIT.md) e [cli/README.md](cli/README.md). O CLI não foi publicado no npm.
+O CLI local é destinado a mantenedores e pipelines que precisam de verificações determinísticas adicionais. Ele não é requisito para instalar ou usar a skill no dia a dia. A instalação pelo Skills CLI entrega a pasta completa `skills/devexcellence/`, incluindo checklists, referências e modelos.
 
 ## Escopo e limitações atuais
 
 - A skill pode orientar projetos em diferentes stacks, mas as verificações reais dependem das ferramentas instaladas e das permissões concedidas.
-- O CLI 0.4.0 foi implementado como camada local complementar, incluindo auditoria estática de testes e gate do artefato de produção; a auditoria de testes é estática/heurística e não comprova efetividade, autoria por IA ou cobertura. O CLI não executa SAST/DAST, pentest, scanner completo de dependências, mutation testing automático ou testes de carga.
+- O CLI 0.4.0 é uma ferramenta complementar para mantenedores, incluindo auditoria estática de testes e gate do artefato de produção; a auditoria de testes é estática/heurística e não comprova efetividade, autoria por IA ou cobertura. O CLI não executa SAST/DAST, pentest, scanner completo de dependências, mutation testing automático ou testes de carga.
 - A documentação define um protocolo opcional multiagente; o repositório não inclui runtime executável de orquestração. Um único agente deve conseguir executar todo o fluxo.
 - Uma meta de 5.000 usuários simultâneos precisa ser definida como uma carga mensurável e comprovada por testes de carga. Ela não é garantida apenas por uma revisão de arquitetura.
 - O repositório permanece privado durante o desenvolvimento inicial. Antes de torná-lo público, escolha uma licença open source explícita e revise os termos de contribuição.

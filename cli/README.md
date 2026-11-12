@@ -1,6 +1,6 @@
 # DevExcellence CLI 0.4.0
 
-CLI complementar à skill. Requer Node.js 20+ e não possui dependências de runtime.
+CLI opcional para mantenedores e CI/CD. Não é necessário para instalar ou usar a skill. Requer Node.js 20+ e não possui dependências de runtime.
 
 ## Executar a partir do repositório
 
@@ -11,7 +11,7 @@ node cli/bin/devexcellence.js init
 node cli/bin/devexcellence.js score
 ```
 
-Após clonar, os comandos podem ser encapsulados por script do projeto. O pacote ainda não está publicado no npm; não instale por `npx` como se fosse um pacote público.
+Esses comandos só são necessários para quem mantém ou integra o próprio CLI. Usuários finais instalam apenas a skill com o comando único documentado em [docs/INSTALLATION.md](../docs/INSTALLATION.md); não precisam clonar este repositório.
 
 ## Comandos
 
