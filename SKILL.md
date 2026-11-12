@@ -98,6 +98,11 @@ Review applicable OWASP risks, including injection, broken access control, authe
 - Avoid logging passwords, tokens, session cookies, keys, or unnecessary personal data.
 
 ### 4. API and routes
+- Validate every input field's type, format, minimum/maximum length, numeric range, precision/scale, and allowed values on the server.
+- Enforce request-body and per-field size limits; reject oversized input instead of silently truncating it.
+- Keep frontend validation for usability, but never rely on it as the security boundary.
+- Test boundary cases: minimum, maximum, one below/above limits, null versus empty, whitespace, Unicode characters, and malformed values.
+- Keep API validation rules consistent with domain rules and database constraints.
 - Inventory routes, methods, middleware, handlers, and exposure.
 - Classify each route as public, authenticated, or privileged.
 - Public routes must be intentional, minimal, documented, and protected against abuse.
@@ -110,6 +115,14 @@ Review applicable OWASP risks, including injection, broken access control, authe
 - Do not mistake a hidden frontend link for server-side protection.
 
 ### 5. Database and persistence
+- Define and justify field sizes and types from business rules, expected growth, interoperability, and storage/query behavior; do not choose arbitrary lengths or copy generic limits blindly.
+- Align application validation, API schemas, and database column constraints so they accept/reject the same values.
+- Use bounded VARCHAR/CHAR only when the domain has a real maximum; use TEXT or equivalent for long variable content, while still enforcing an explicit application/API limit where needed.
+- Define numeric precision and scale explicitly for decimal values; avoid floating-point types for exact monetary values.
+- Store identifiers such as CPF/CNPJ, telephone numbers, postal codes, and similar values as strings when leading zeros, formatting, or non-arithmetic semantics matter.
+- Consider Unicode, normalization, character-count versus byte-count semantics, collation, and database-specific length behavior.
+- Distinguish NULL, empty string, omitted fields, and default values; enforce required/optional semantics deliberately.
+- Add tests for exact boundaries, overflow, Unicode, and attempted truncation; never silently lose user input.
 - Review entities, relationships, cardinality, constraints, nullability, types, and indexes.
 - Parameterize all data queries; never concatenate untrusted input into SQL.
 - Avoid N+1 queries, unbounded scans, and unnecessary columns.
