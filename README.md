@@ -60,9 +60,15 @@ The skill is designed to be used before implementation, during coding, and after
 - `cli/`: planned deterministic CLI scope.
 - `CHANGELOG.md`, `CONTRIBUTING.md`, and `SECURITY.md`: project governance.
 
-## Installation
+## Quick installation
 
-See [docs/INSTALLATION.md](docs/INSTALLATION.md). Installation paths and discovery rules differ between agents and editors; follow the official documentation for the specific host.
+Install directly from GitHub with the Skills CLI:
+
+```bash
+npx skills add https://github.com/ylkias/DevExcellence --skill devexcellence
+```
+
+The repository root contains the `SKILL.md` with the skill identifier `devexcellence`, which is a supported discovery layout. The installer lets the developer select a compatible AI agent and install scope. See [docs/INSTALLATION.md](docs/INSTALLATION.md) for private-repository authentication, global installation, and manual alternatives.
 
 ## Current scope and limitations
 
