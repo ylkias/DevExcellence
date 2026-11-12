@@ -23,7 +23,7 @@ test("reconhece teste JavaScript com assertion baseada em resultado", () => {
     assert.equal(r.summary.files, 1);
     assert.equal(r.summary.testCases, 1);
     assert.equal(r.summary.assertions, 1);
-    assert.ok(r.results.some(x => x.id === "TEST-AI-012" && x.status === "pass"));
+    assert.ok(r.results.some(x => x.id === "TEST-AI-012" && x.status === "info"));
     assert.ok(!r.results.some(x => x.id === "TEST-AI-002"));
   } finally { fs.rmSync(f.root, { recursive: true, force: true }); }
 });

@@ -1,6 +1,7 @@
 import fs from "node:fs";
 
 const TEST_FILE_PATTERNS = [
+  /(^|\/)(?:test|tests)\/.*\.[cm]?[jt]sx?$/i,
   /(^|\/)__tests__(\/|$)/i,
   /\.(?:test|spec)\.[cm]?[jt]sx?$/i,
   /(^|\/)test_[^/]+\.py$/i,
