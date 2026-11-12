@@ -16,32 +16,28 @@ Qualidade e segurança são guardrails incorporados ao fluxo, não o produto pri
 
 ## O que ela ajuda a fazer
 
-- Compreender um projeto existente antes de realizar alterações.
-- Validar requisitos, critérios de aceitação e arquitetura antes da geração de código.
-- Identificar lógicas incompletas, código morto, atalhos inseguros, duplicações e código obsoleto.
-- Revisar autenticação, autorização, sessões, funções, permissões e trilhas de auditoria.
-- Identificar riscos em rotas e APIs, endpoints públicos indevidos, ausência de validação, paginação e limites de requisições.
-- Revisar modelagem de banco de dados, relacionamentos, índices, queries parametrizadas, transações, integridade referencial, concorrência, ciclo de vida das conexões e migrations.
-- Avaliar resiliência, privacidade/LGPD, acessibilidade, cadeia de suprimentos, observabilidade, backup/recuperação, internacionalização e entrega em produção.
-- Selecionar módulos adaptativamente conforme o tipo, a criticidade e os riscos do projeto, sem aplicar checklists irrelevantes.
-- Aplicar práticas adequadas ao contexto, como TDD, BDD, ATDD, DDD, SOLID, Clean Code, Clean Architecture e DevSecOps.
-- Auditar a qualidade dos arquivos de teste, inclusive os gerados por IA, identificando testes vazios, assertions fracas/tautológicas, mocks excessivos, testes ignorados e lacunas de cenários.
-- Executar e interpretar testes, análise estática, verificações de dependências e testes de performance usando as ferramentas disponíveis no projeto.
-- Melhorar manutenibilidade, desempenho, escalabilidade e eficiência no uso de contexto e tokens.
-- Gerar relatórios práticos com falhas, evidências, correções, riscos residuais e comparação antes/depois.
+- Transformar descrições em linguagem natural em funcionalidades e aplicações utilizáveis.
+- Construir MVPs e primeiras versões em fatias pequenas, completas e testáveis.
+- Entender e preservar projetos, stacks, componentes, design systems e padrões já existentes.
+- Implementar interfaces responsivas, interações, regras de negócio, APIs e persistência quando necessários.
+- Executar a aplicação e os testes disponíveis, interpretar falhas, corrigir e iterar.
+- Incorporar feedback visual e funcional sem reescrever o projeto sem motivo.
+- Escolher soluções técnicas simples e reversíveis quando o usuário não especificar detalhes.
+- Aplicar qualidade e segurança como proteções proporcionais ao contexto, sem burocratizar tarefas simples.
+- Selecionar checklists e verificações somente quando a mudança ou o risco justificar.
+- Reduzir leituras redundantes, chamadas desnecessárias e consumo de contexto/tokens.
+- Explicar o que ficou pronto, como testar e quais limitações permanecem.
 
 ## Princípios
 
-1. **A skill em primeiro lugar:** estabelecer critérios de engenharia antes da implementação.
-2. **Validação contínua:** revisar as alterações durante o desenvolvimento, e não somente no final.
-3. **Evidências acima de afirmações:** nunca inventar resultados de testes, scanners ou testes de carga.
-4. **Menor alteração necessária:** preservar o comportamento existente e as convenções do projeto.
-5. **Segurança por padrão:** aplicar autorização no servidor e validar todas as fronteiras de confiança.
-6. **Independência de stack:** identificar as ferramentas reais do projeto, sem impor tecnologias.
-7. **Independência de LLM:** manter as orientações centrais neutras em relação a provedores e usar adaptadores somente quando necessário.
-8. **Eficiência de contexto:** evitar leituras e chamadas redundantes sem pular verificações importantes.
-9. **Controle humano:** solicitar aprovação para ações destrutivas, externas, custosas ou fora do escopo.
-10. **Transparência nos resultados:** diferenciar problemas confirmados, hipóteses e itens não verificados.
+1. **Construir junto:** priorizar uma implementação funcional quando o pedido for implementar e as ferramentas permitirem.
+2. **Interação simples:** conversar em linguagem natural, com o mínimo de perguntas e etapas.
+3. **Iteração rápida:** entregar pequenas partes funcionais, testar e melhorar com feedback.
+4. **Preservar o projeto:** respeitar stack, arquitetura e identidade visual existentes.
+5. **Qualidade proporcional:** testar o que mudou e ampliar a validação quando o risco exigir.
+6. **Segurança incorporada:** proteger dados, credenciais e operações sem transformar toda tarefa em auditoria.
+7. **Eficiência:** reduzir contexto, leituras e chamadas redundantes.
+8. **Transparência:** não inventar validações, resultados ou garantias.
 
 ## Ciclo de Vibe Coding
 
