@@ -53,7 +53,7 @@ A skill deve ser utilizada antes da implementação, durante a codificação e d
 ## Estrutura do repositório
 
 - `SKILL.md`: instruções centrais da skill, independentes de provedor.
-- `checklists/`: listas de verificação de qualidade, segurança, APIs, banco de dados, testes e performance.
+- `checklists/`: listas de verificação de qualidade, segurança, APIs, banco de dados, máscaras/formatação de campos, testes e performance.
 - `docs/`: documentação de instalação, arquitetura, modos de operação, metodologias, multiagentes, relatórios e escalabilidade.
 - `templates/`: modelos de relatório de auditoria, plano de implementação e registro de achados.
 - `examples/`: exemplos de achados e prompts reutilizáveis.
