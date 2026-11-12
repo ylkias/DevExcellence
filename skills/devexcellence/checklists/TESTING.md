@@ -27,6 +27,7 @@
 - [ ] Registre comando, versão do runtime/framework, resultado real, duração, cobertura e limitações.
 - [ ] Não considere um teste aprovado apenas porque foi gerado, compilou ou passou uma vez.
 - [ ] Não tente classificar autoria humana/IA como fato baseado somente no conteúdo do arquivo; avalie qualidade e efetividade.
+- [ ] Mantenha arquivos de teste no repositório e na CI, mas exclua arquivos/diretórios de teste, mocks/fixtures exclusivos de teste, configurações de frameworks e resultados de teste do artefato publicado; execute o gate production-audit depois do build.
 
 ## Execução e evidência
 

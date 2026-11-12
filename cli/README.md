@@ -1,4 +1,4 @@
-# DevExcellence CLI 0.2.0
+# DevExcellence CLI 0.3.0
 
 CLI complementar à skill. Requer Node.js 20+ e não possui dependências de runtime.
 
@@ -33,6 +33,18 @@ Comandos externos só podem ser executados com `--run` e configuração explíci
 
 Estados: `pass` (100%), `partial` (50%), `fail` (0%), `not_applicable` (excluído com justificativa) e `not_assessed` (reduz a cobertura). Achado crítico aberto bloqueia o gate; achado alto aberto exige revisão; cobertura abaixo do limite mantém o resultado provisório.
 
+
+### production-audit / release-audit
+
+Inspeciona o diretório real que será publicado. O comando é obrigatório depois do build e antes de publicar/deployar:
+
+```bash
+node cli/bin/devexcellence.js production-audit --path ./dist
+```
+
+Copie examples/.dockerignore.production para o nome de ignore reconhecido pelo Docker (.dockerignore ou arquivo específico do Dockerfile) e ajuste os padrões ao seu projeto. Use o caminho do artefato efetivamente implantado (por exemplo, dist, build, .next/standalone ou diretório de pacote extraído). Qualquer arquivo/diretório de teste reconhecido ou varredura incompleta bloqueia o release (exit code 1). Caminho ausente/inválido retorna 2. O relatório deve ser salvo fora do diretório auditado.
+
+A auditoria detecta diretórios de teste, arquivos .test.* /.spec.*, padrões comuns de Python/Go/JVM/.NET/Ruby, configurações de frameworks, mocks, fixtures de teste, snapshots e relatórios de cobertura. Ela não inspeciona diretamente imagens Docker ou arquivos bundle para descobrir código de teste embutido; extraia o filesystem da imagem/pacote para um diretório isolado e audite-o.
 
 ## Códigos de saída
 

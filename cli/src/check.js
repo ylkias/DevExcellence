@@ -93,6 +93,41 @@ function runConfigured(root, results) {
       r.error ? "Não executado: " + r.error.message : "Código de saída: " + r.status, { command: item.argv });
   });
 }
+
+function auditDockerBuildContext(root, results) {
+  let entries = [];
+  try { entries = fs.readdirSync(root); } catch { return; }
+  const dockerfiles = entries.filter((name) => /^Dockerfile(?:\..+)?$/i.test(name));
+  for (const dockerfile of dockerfiles) {
+    const full = path.join(root, dockerfile);
+    let content;
+    try { content = fs.readFileSync(full, "utf8"); } catch { continue; }
+    const copiesWholeContext = /^\s*(?:COPY|ADD)\s+(?:--[^\s]+\s+)*\.\/?\s+/im.test(content);
+    if (!copiesWholeContext) continue;
+    const specificIgnore = path.join(root, dockerfile + ".dockerignore");
+    const ignorePath = fs.existsSync(specificIgnore) ? specificIgnore : path.join(root, ".dockerignore");
+    let lines = [];
+    if (fs.existsSync(ignorePath)) {
+      try {
+        lines = fs.readFileSync(ignorePath, "utf8").split(/\r?\n/).map((line) => line.trim()).filter((line) => line && !line.startsWith("#"));
+      } catch {}
+    }
+    const excludesTestDirs = lines.some((line) => /(?:^|\/)(?:test|tests|__tests__|__mocks__|__fixtures__|__snapshots__)(?:\/|$)/i.test(line));
+    const excludesTestFiles = lines.some((line) => /(?:\*\.test\.\*|\*\.spec\.\*|\*_test\.(?:go|py)|test_\*\.py)/i.test(line));
+    if (!excludesTestDirs || !excludesTestFiles) {
+      add(results, "PROD-DOCKER-001", "Contexto Docker pode incluir arquivos de teste", "high", "review",
+        !fs.existsSync(ignorePath)
+          ? "Dockerfile copia todo o contexto e não possui .dockerignore específico; arquivos de teste podem entrar na imagem. Crie exclusões e valide a imagem/artefato final."
+          : "As regras do .dockerignore não demonstram exclusão de diretórios e arquivos de teste. Revise os padrões e valide o artefato final.",
+        { file: dockerfile, ignoreFile: fs.existsSync(ignorePath) ? path.basename(ignorePath) : null });
+    } else {
+      add(results, "PROD-DOCKER-002", "Exclusões de testes no contexto Docker", "info", "pass",
+        "Foram encontradas regras para diretórios e arquivos de teste em " + path.basename(ignorePath) + ". A imagem final ainda precisa passar por production-audit.",
+        { file: dockerfile, ignoreFile: path.basename(ignorePath) });
+    }
+  }
+}
+
 export function runProjectChecks(options = {}) {
   const root = path.resolve(options.root || process.cwd());
   const results = [], stack = detectStack(root);
@@ -111,6 +146,7 @@ export function runProjectChecks(options = {}) {
   add(results, "PROJECT-006", "Estrutura de testes", hasTests ? "info" : "medium", hasTests ? "pass" : "review", hasTests ? "Script/diretório de testes localizado; não executado." : "Nenhuma estrutura de testes reconhecida.");
   const ci = fs.existsSync(path.join(root, ".github", "workflows")) || [".gitlab-ci.yml","Jenkinsfile","azure-pipelines.yml"].some((x) => fs.existsSync(path.join(root, x)));
   add(results, "PROJECT-007", "Pipeline CI/CD", ci ? "info" : "medium", ci ? "pass" : "review", ci ? "Configuração localizada; não executada." : "Pipeline não localizada.");
+  auditDockerBuildContext(root, results);
   const inventory = walk(root);
   const testAudit = options.testAudit === false
     ? { summary: { files: 0, testCases: 0, assertions: 0, filesWithoutAssertions: 0, weakAssertionFiles: 0, skippedTests: 0, filesWithoutNegativeCases: 0 }, results: [] }

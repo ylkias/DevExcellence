@@ -54,3 +54,21 @@ test("comandos externos exigem execução explícita e usam argv",() => {
     assert.ok(r.results.some(x=>x.id==="RUN-1"&&x.status==="pass"));
   } finally { fs.rmSync(root,{recursive:true,force:true}); }
 });
+test("alerta quando Dockerfile copia todo o contexto sem .dockerignore", () => {
+  const root=fixture();
+  try {
+    fs.writeFileSync(path.join(root,"Dockerfile"), "FROM node:22\nWORKDIR /app\nCOPY . .\n");
+    const r=runProjectChecks({root,includeSecrets:false});
+    assert.ok(r.results.some(x=>x.id==="PROD-DOCKER-001"&&x.status==="review"));
+  } finally { fs.rmSync(root,{recursive:true,force:true}); }
+});
+test("reconhece exclusões de diretórios e arquivos de teste no .dockerignore", () => {
+  const root=fixture();
+  try {
+    fs.writeFileSync(path.join(root,"Dockerfile"), "FROM node:22\nWORKDIR /app\nCOPY . .\n");
+    fs.writeFileSync(path.join(root,".dockerignore"),"**/tests\n**/__tests__\n**/__mocks__\n**/*.test.*\n**/*.spec.*\n**/*_test.go\n**/coverage\n");
+    const r=runProjectChecks({root,includeSecrets:false});
+    assert.ok(r.results.some(x=>x.id==="PROD-DOCKER-002"&&x.status==="pass"));
+    assert.ok(!r.results.some(x=>x.id==="PROD-DOCKER-001"));
+  } finally { fs.rmSync(root,{recursive:true,force:true}); }
+});

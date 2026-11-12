@@ -15,6 +15,9 @@
 - [ ] Migrations são compatíveis com a sequência de deploy.
 - [ ] Deploy em produção exige autorização adequada.
 - [ ] Artefatos publicados podem ser rastreados à revisão/commit de origem.
+- [ ] Arquivos/diretórios de testes, mocks, fixtures exclusivos de teste, configurações de frameworks e relatórios de cobertura permanecem no repositório/CI e são excluídos do artefato final de produção.
+- [ ] Após o build e antes do deploy/publicação, o diretório exato do artefato passa em production-audit --path <diretório>; qualquer achado ou varredura incompleta bloqueia o release.
+- [ ] Em builds Docker com COPY ., o .dockerignore exclui testes e artefatos de teste; a imagem final também é inspecionada após extração do filesystem.
 
 ## Critério de aceite
 

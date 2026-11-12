@@ -25,6 +25,7 @@ jobs:
           node --check cli/bin/devexcellence.js
           node --check cli/src/check.js
           node --check cli/src/test-audit.js
+          node --check cli/src/production-audit.js
           node --check cli/src/score.js
           node --check scripts/validate-skill-package.mjs
       - name: Run CLI unit tests
@@ -34,3 +35,20 @@ jobs:
         run: node scripts/validate-skill-package.mjs
       - name: CLI smoke test
         run: node cli/bin/devexcellence.js check --fail-on never --no-secrets --json
+      - name: Verify production artifact release gate
+        shell: bash
+        run: |
+          artifact="$(mktemp -d)"
+          trap 'rm -rf "$artifact"' EXIT
+          printf '%s\n' 'console.log("ready")' > "$artifact/server.js"
+          node cli/bin/devexcellence.js production-audit --path "$artifact" --json
+          mkdir -p "$artifact/tests"
+          printf '%s\n' 'test("should not ship", () => {})' > "$artifact/tests/example.test.js"
+          set +e
+          node cli/bin/devexcellence.js production-audit --path "$artifact" --json
+          status=$?
+          set -e
+          if [ "$status" -ne 1 ]; then
+            echo "Production audit should block test files (expected exit 1, got $status)"
+            exit 1
+          fi

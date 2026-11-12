@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.0 — bloqueio de arquivos de teste em produção
+
+- Added a release-blocking production artifact audit for test-only files, directories, mocks, fixtures, test framework configuration and coverage outputs.
+- Added Docker build-context checks when Dockerfiles copy the entire build context and provide no sufficient .dockerignore exclusions.
+- Added deployment checklist requirements and a production .dockerignore example.
+- Added automated tests for clean/contaminated artifacts, scan limits, Docker context rules and CLI exit codes.
+
+
 ## 0.2.0 — auditoria de testes e validação reforçada
 
 - Added static test-file auditing for common JavaScript/TypeScript, Python, Go, Java/Kotlin, C#, PHP and Ruby test conventions.

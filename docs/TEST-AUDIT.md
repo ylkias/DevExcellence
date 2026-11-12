@@ -49,3 +49,8 @@ A auditoria é ativada por padrão. Para tornar achados de severidade alta bloqu
 A auditoria é estática. Ela não executa os testes, não calcula line/branch coverage, não faz mutation testing e não prova que um teste detecta defeitos. Um teste que compila ou passa pode ser inútil; uma assertion reconhecida também pode validar a coisa errada.
 
 Não há método confiável para inferir autoria humana ou IA somente pelo texto do teste. O foco é avaliar propriedades observáveis de qualidade. Para evidência forte, execute a suite e a cobertura no CI, valide mutações deliberadas e revise se os testes cobrem critérios de aceite, integrações e regressões.
+
+
+## Separação entre testes e produção
+
+Os testes devem permanecer no repositório e executar na CI. Não devem ser incluídos no diretório/pacote final publicado. Depois de concluir o build, execute o gate [PRODUCTION-ARTIFACT-AUDIT.md](PRODUCTION-ARTIFACT-AUDIT.md) sobre o artefato exato que será implantado. O comando bloqueia o release quando encontra arquivos/diretórios reconhecidos como testes ou quando a varredura fica incompleta.

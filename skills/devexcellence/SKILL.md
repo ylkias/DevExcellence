@@ -300,3 +300,17 @@ Ao revisar testes:
 - Não infira autoria humana/IA como fato somente pelo conteúdo. Avalie a qualidade e a efetividade, não a suposta origem.
 
 Use a checklist `checklists/TESTING.md` e considere os achados da auditoria estática do CLI como sinais para revisão, não como prova definitiva.
+
+
+## Gate obrigatório: separar testes do artefato de produção
+
+Arquivos de teste devem permanecer no repositório e ser executados na CI. **Nunca devem ser copiados para o artefato final publicado nem para o filesystem implantado em produção.** Não apague testes do source control para satisfazer essa regra; configure o build/empacotamento para excluí-los.
+
+Antes de release/deploy:
+1. Identifique o diretório ou pacote exato que será publicado.
+2. Revise as regras de exclusão do contexto Docker/empacotamento quando aplicável. Se um Dockerfile usa COPY ., exclua diretórios e arquivos de teste do contexto.
+3. Execute production-audit --path <diretório-do-artefato> após o build e antes do deploy.
+4. Bloqueie a publicação quando houver arquivo/diretório de teste detectado, erro de leitura ou varredura incompleta.
+5. Mantenha o relatório fora do artefato auditado e registre o resultado no pipeline.
+
+Não considere check no repositório-fonte como prova de que a imagem/pacote final está limpo. O gate deve inspecionar o conteúdo real que será implantado. Para imagens Docker e pacotes compactados, extraia o filesystem/conteúdo para uma pasta isolada e execute a auditoria nessa pasta. A auditoria verifica nomes e caminhos conhecidos; não detecta necessariamente código de teste incorporado a bundles minificados ou renomeados.
