@@ -2,6 +2,13 @@
 
 - [ ] Entities, relationships, cardinality, and constraints are correct.
 - [ ] Column types, nullability, defaults, and uniqueness are appropriate.
+- [ ] Field sizes and maximum lengths are justified by business rules, not arbitrary defaults.
+- [ ] API/application validation limits match database constraints.
+- [ ] Numeric precision and scale are explicit; exact monetary values avoid floating-point storage.
+- [ ] Identifiers such as tax IDs and phone numbers use suitable string types when arithmetic is not intended.
+- [ ] Unicode, character-versus-byte length, normalization, and collation behavior are considered.
+- [ ] NULL, empty string, omitted values, and defaults have deliberate semantics.
+- [ ] Boundary tests cover minimum, maximum, overflow, Unicode, and truncation behavior.
 - [ ] Indexes support measured query patterns without excessive write cost.
 - [ ] Queries are parameterized; untrusted input is never concatenated into SQL.
 - [ ] N+1 queries and unbounded reads are addressed.
