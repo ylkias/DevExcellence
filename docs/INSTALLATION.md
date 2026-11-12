@@ -15,8 +15,10 @@ O comando instala a DevExcellence globalmente para todos os agentes compatíveis
 ## Começar a usar
 
 1. Abra ou recarregue seu agente de programação (Claude Code, Codex, Cursor ou outro agente compatível).
-2. Entre em qualquer projeto e solicite a tarefa normalmente: "implemente esta funcionalidade", "corrija este erro", "revise a segurança" ou "analise a performance".
-3. A skill conduz o fluxo de engenharia e seleciona o contexto/checklists pertinentes automaticamente.
+2. Entre em qualquer projeto e descreva normalmente o que deseja criar, mudar ou corrigir.
+3. A skill orienta o agente a construir uma primeira versão, executar, corrigir e evoluir o projeto em ciclos curtos.
+
+O foco é Vibe Coding: você conversa sobre o produto e dá feedback; não precisa operar checklists, metodologias ou comandos internos. Veja [VIBECODING.md](VIBECODING.md) para conhecer a experiência.
 
 **Não é necessário clonar o repositório DevExcellence, instalar o CLI, executar `context-plan` ou chamar um comando especial antes de cada tarefa.** O comando de instalação é a única etapa de instalação da skill.
 

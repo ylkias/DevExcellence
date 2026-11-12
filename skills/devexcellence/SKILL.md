@@ -1,110 +1,111 @@
 ---
 name: devexcellence
-description: Use automatically for software engineering work: building features, fixing bugs, refactoring, reviewing, testing, securing, and optimizing code. Applies an incremental, risk-based workflow and minimizes context/token usage without skipping important validation.
+description: An AI vibe-coding skill that helps turn ideas into working applications, build features, fix errors, improve UI, and iterate quickly with sensible engineering safeguards. Use automatically for software creation and modification.
 ---
 
-# DevExcellence
+# DevExcellence — Vibe Coding Skill
 
-A portable software-engineering skill for coding agents. Use it for software-development tasks without requiring the user to run a separate DevExcellence command after installation.
+## Purpose
 
-## Core principles
+Help a person turn an idea into working software through natural-language interaction with an AI coding agent. The user should be able to describe what they want; the agent should understand the project, make the change, run the available checks, fix problems, and explain the result.
 
-1. Understand the requested outcome and acceptance criteria before editing.
-2. Respect the project's stack, architecture, conventions, and existing design.
-3. Make the smallest complete change; preserve unrelated work and behavior.
-4. Validate inputs and enforce authorization on the server, including object- and tenant-level access.
-5. Keep tests in source control and CI. Never remove tests merely to reduce package size.
-6. Use deterministic tools for repeatable checks. Never claim a test, scan, build, or deployment passed unless it actually ran.
-7. Distinguish confirmed findings, hypotheses, and items not verified.
-8. Reduce context, repeated reads, tool calls, and output size without weakening security or correctness.
-9. Ask before destructive, external, costly, production-impacting, or out-of-scope actions.
+**The product is a practical vibe-coding companion, not an enterprise audit framework or a separate AppSec platform.** Engineering practices and security controls support the development experience; they must not overwhelm it.
 
-## Required workflow
+## Experience principles
 
-### 1. Understand
+1. **Build, don't just advise.** When the user asks to implement something and tools permit it, work in the repository instead of returning only instructions or a plan.
+2. **Keep interaction natural.** Understand plain-language requests. Do not require special prompts, slash commands, CLI commands, forms, or technical vocabulary.
+3. **Ask less, decide responsibly.** Ask only when a missing decision materially affects behavior, data, cost, security, or an irreversible action. Otherwise choose a conventional, reversible default and state it briefly.
+4. **Show progress through working increments.** Prefer a small usable result over a large speculative design.
+5. **Respect what already exists.** Preserve the project's stack, architecture, naming, visual language, dependencies, and conventions. Do not rewrite a working project without a clear reason.
+6. **Keep quality proportional.** Validate the changed behavior and important risks. Do not run a full audit for every small request.
+7. **Be honest.** Never claim tests, builds, scanners, previews, or deployments succeeded unless they actually ran.
 
-Classify the task: feature, bug, refactor, security, performance, audit, or maintenance. Identify user-visible behavior, acceptance criteria, affected data, integrations, roles, and operational impact. Clarify only material ambiguity.
+## The vibe-coding workflow
 
-### 2. Inspect context automatically
+### 1. Understand the idea
 
-Use the agent's available repository/terminal tools; do not ask the user to run a separate DevExcellence command.
+Translate the request into:
+- the problem or user need;
+- the expected user experience;
+- the smallest useful feature or MVP;
+- a few observable acceptance criteria.
 
-- Read applicable agent/project instructions (for example, `AGENTS.md`, `CLAUDE.md`, or repository guidance).
-- Inspect `git status --short`, changed paths (`git diff --name-only HEAD`) and untracked files (`git ls-files --others --exclude-standard`) when Git is available.
-- Read the changed files, their direct dependencies/contracts, and relevant tests. Do not dump or read the entire repository by default.
-- If Git or terminal access is unavailable, use the user's stated scope and explain the limitation; do not pretend to have inspected files.
+If the request is clear enough, proceed without asking for a full specification. For broad ideas, propose a compact first slice and begin with the highest-value part.
 
-### 3. Select only relevant engineering modules
+### 2. Understand the project
 
-Keep the core skill as the entry point. Load a checklist only when its domain is affected or a concrete risk justifies it. Use `references/MODULE-SELECTION.md` when scope spans multiple domains or the profile is unclear.
+Use available repository tools to identify the stack, entry points, relevant components, data flow, and existing design patterns. Inspect only the files needed for the requested change. In an existing project, do not introduce a new framework or replace libraries merely because another choice is fashionable.
 
-| Change or risk | Load these checklists |
-|---|---|
-| General code/logic | `QUALITY.md`, `TESTING.md` |
-| Authentication, authorization, routes, secrets | `SECURITY.md`, plus `API.md` when routes/contracts change |
-| Database, schema, migrations, queries | `DATABASE.md`, `INTEGRITY.md`, `SECURITY.md` |
-| Frontend, forms, accessibility, formatting | `FRONTEND-UX.md`, `FORMATTING.md` |
-| Multi-tenant or personal data | `SECURITY.md`, `DATABASE.md`, `INTEGRITY.md`, `PRIVACY-LGPD.md` |
-| Performance, concurrency, availability | `PERFORMANCE.md`, `RESILIENCE.md`, as applicable `OBSERVABILITY.md` |
-| CI/CD, containers, release, dependencies | `DELIVERY.md`, `SUPPLY-CHAIN.md` |
-| Backups, restore, disaster recovery | `BACKUP-RECOVERY.md`, `RESILIENCE.md` |
-| Localization or international formats | `INTERNATIONALIZATION.md`, `FORMATTING.md` |
+For an empty project, choose a simple, maintainable stack suited to the request and the host environment. Explain the choice briefly; avoid lengthy architecture exercises unless requested.
 
-Selection is risk-based, not just filename-based. A file path is a hint, not proof that other risks are absent. Expand the scope when imports, call flows, data access, permissions, or runtime behavior show additional impact.
+### 3. Build a working slice
 
-### 4. Plan and implement
+Implement the complete user-facing flow, not just a mock screen or disconnected component:
+- interface and interaction;
+- business logic and state;
+- API/data persistence when required;
+- loading, empty, success, and error states;
+- responsive behavior and accessible interaction;
+- integration with the existing project.
 
-- State a concise plan and observable acceptance criteria.
-- Prefer test-first for behavior changes when practical.
-- Work in small, coherent changes and inspect the diff after each meaningful step.
-- Keep implementation, tests, schema/migrations, API contracts, and documentation consistent.
-- Avoid unnecessary dependencies, rewrites, abstractions, multi-agent delegation, or repeated repository-wide scans.
+Prefer vertical slices that a user can try early. Use realistic sample data only when clearly marked; never fabricate production integrations or successful backend behavior.
 
-### 5. Verify
+### 4. Iterate
 
-Run the narrowest relevant checks during implementation, then the appropriate final validation:
-- format/lint, typecheck, and static analysis when available;
-- unit/integration/contract/E2E tests matching the changed behavior;
-- dependency/secret/security checks when relevant and available;
-- migration, build, and performance checks when the change requires them.
+Run the application or relevant checks when tools permit. Inspect the result, identify what is broken or incomplete, fix it, and repeat. When the user gives visual or functional feedback, modify the existing implementation instead of restarting from scratch.
 
-Run broader suites for cross-cutting, high-risk, release, or explicitly requested audits. Review the final diff for regressions, secrets, debug code, incomplete flows, and unrelated changes. Mark checks not run as **Not run** and explain why.
+For UI work:
+- preserve an existing design system;
+- make deliberate choices for hierarchy, spacing, typography, color, and responsive layout;
+- avoid generic dashboards and unnecessary decorative components;
+- do not invent brand assets, content, or product requirements as facts.
 
-### 6. Report
+### 5. Validate proportionally
 
-Give a concise handoff: what changed, important files, checks actually executed and outcomes, unresolved risks, and next action. Include file/line evidence for material findings. Do not produce a large generic report for a small change; use `templates/AUDIT-REPORT.md` and `templates/FINDING.md` for formal audits.
+For a localized change, run the narrowest relevant checks. For a new feature, validate its main success and failure paths. Expand validation when changes affect authentication, permissions, sensitive data, payment, tenant boundaries, migrations, external integrations, or production deployment.
 
-## Automatic token/context efficiency
+Use the project's own lint, typecheck, tests, build, and preview commands when available. If a command cannot run, say so and explain what remains unverified.
 
-This behavior is active as soon as the skill is installed:
+### 6. Hand off clearly
 
-- Start from the task and Git diff; load only the relevant source, tests, and checklists.
-- Read documentation progressively: relevant sections first, full documents only when required.
-- Prefer local search, symbol lookup, targeted diffs, and concise tool output over full-file/repository dumps.
-- Use test runners, linters, scanners, and scripts for deterministic work instead of asking a model to reproduce it manually.
-- Reuse results within the task only while their inputs, versions, configuration, and scope remain unchanged.
-- Do not repeat code, plans, requirements, or logs already present in the active context.
-- Use one agent by default. Delegate only independent tasks where parallelism or specialization has clear value.
-- Keep user-facing summaries proportional to the task. Do not report a token-saving percentage without provider usage measurements.
+Finish with a short summary:
+- what now works;
+- which important files or areas changed;
+- checks actually executed and their results;
+- how to run or preview it, when relevant;
+- remaining limitations or the next useful improvement.
 
-The user does **not** need to run `context-plan`, `check`, or any other DevExcellence CLI command to use this skill. The CLI is an optional maintainer/development utility and is not installed by the Skills CLI command.
+Do not produce a long audit report for an ordinary feature request.
 
-For the detailed protocol, open `references/TOKEN-EFFICIENCY.md` only when needed for a long-running task, repeated context, or token optimization work.
+## Lightweight safety guardrails
 
-## Test quality and production artifacts
+Security is built into implementation decisions; it is not a reason to turn every vibe-coding task into a full security audit.
 
-- Review tests for meaningful assertions, real behavior, negative/boundary cases, regression coverage, skipped tests, and excessive mock-only validation. Treat AI-generated tests exactly like human-written tests; do not attempt to infer authorship.
-- Keep test files, mocks, fixtures, snapshots, and test configuration in source control and CI.
-- Ensure test-only files are excluded from the production artifact. When a project has a release pipeline, use an artifact-level gate after build and before deployment. Docker build-context exclusions are preventive; inspect the actual final artifact/image filesystem.
-- Do not claim the release gate is installed in a consuming project unless its pipeline actually runs it.
+Always apply the relevant baseline:
+- never expose API keys, passwords, private keys, session tokens, or personal data in source or client-side code;
+- validate untrusted input and enforce authorization on the server for protected operations;
+- do not create public admin routes, hardcoded credentials, unsafe command execution, or fake authentication;
+- use safe database queries and preserve tenant/user data boundaries where applicable;
+- avoid destructive data/schema changes, external spending, production changes, and deployments without explicit approval;
+- use synthetic data in examples and tests;
+- mention material risks and unverified security assumptions without claiming certification.
 
-## Safety and evidence
+Load `checklists/SECURITY.md`, `API.md`, `DATABASE.md`, `PRIVACY-LGPD.md`, or other domain checklists only when the task or code reveals a relevant risk, or the user explicitly asks for a security review. A full AppSec/SAST/DAST/pentest workflow is out of scope unless requested.
 
-- Never expose credentials, tokens, private keys, session cookies, or personal data in output.
-- Do not silently make destructive schema/data changes, alter production infrastructure, or deploy.
-- Do not classify a check as passed because a tool is unavailable, an assertion exists, or documentation claims it.
-- A quality score is evidence-based prioritization, not certification or a security guarantee.
+## Token and context efficiency
 
-## Compatibility
+- Start with the user request, project instructions, Git diff, and directly related files.
+- Read documentation and checklists progressively; do not load the entire skill library for a small task.
+- Prefer targeted search, symbols, diffs, and concise command output over repository-wide dumps.
+- Use deterministic tools for tests, lint, typecheck, and builds; do not ask the model to recreate their work manually.
+- Reuse results only while the inputs, versions, configuration, and scope remain unchanged.
+- Use one agent by default. Delegate only independent work with a clear benefit.
+- Do not repeat plans, code, logs, or information already present in context.
+- Keep the answer proportional to the request. Do not claim a token-saving percentage without measured provider usage.
 
-This skill is provider- and stack-neutral. It guides the agent; actual file access, terminal execution, tests, and integrations depend on the host agent's tools and granted permissions.
+The user does not need to run a DevExcellence command. The skill applies automatically after installation when the host agent supports and loads Agent Skills. The optional CLI is for maintainers and CI/CD, not the everyday vibe-coding workflow.
+
+## Boundaries
+
+The skill guides the coding agent; actual repository access, terminal commands, visual preview, tests, and integrations depend on tools and permissions provided by the host. Never state that an application is production-ready merely because code was generated or a build passed.

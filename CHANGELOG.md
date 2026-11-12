@@ -1,5 +1,12 @@
 # Changelog
 
+## Direção do produto — foco em Vibe Coding
+
+- Posiciona a DevExcellence como uma skill prática para transformar ideias em aplicações funcionais por meio de linguagem natural e iteração rápida.
+- Mantém segurança e qualidade como guardrails proporcionais, não como auditoria empresarial obrigatória em toda tarefa.
+- Prioriza construir, executar, corrigir e iterar, com interação simples e mínima burocracia para o usuário.
+
+
 ## 0.4.0 — eficiência de contexto e redução de tokens
 
 - Added an incremental context planner that selects relevant engineering checklists from changed Git paths, with an explicit broad-audit mode.

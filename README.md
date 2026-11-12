@@ -1,16 +1,18 @@
 # DevExcellence
 
-**Uma skill universal de engenharia de software, independente de LLM, para entregar software melhor, mais seguro e confiável.**
+**Uma skill universal de Vibe Coding para transformar ideias em aplicações funcionais usando agentes de IA.**
 
-A DevExcellence ajuda desenvolvedores e agentes de IA a compreender uma base de código, planejar alterações, implementar soluções completas, validar qualidade, reduzir riscos de segurança e apresentar evidências dos resultados. Foi projetada para funcionar com diferentes provedores de LLM, editores, linguagens, frameworks e ambientes de desenvolvimento.
+A pessoa descreve o que quer em linguagem natural. A DevExcellence orienta o agente a entender o projeto, construir uma primeira versão funcional, executar e corrigir, melhorar a interface e evoluir o produto em ciclos curtos. Funciona com diferentes agentes, LLMs, linguagens e frameworks.
 
 > Status: skill principal disponível no pacote Agent Skills; CLI local 0.4.0 implementado e testes automatizados adicionados. O workflow de CI valida o pacote e o CLI em Node.js 20 e 22; confira o status da execução mais recente antes de fazer release. Nenhum teste ou scanner deve ser declarado como aprovado sem ter sido realmente executado.
 
 ## Propósito principal
 
-O produto principal é a **skill**: um conjunto portátil de instruções e fluxos de engenharia que pode ser instalado em agentes de IA compatíveis. O CLI é complementar: executa verificações determinísticas e ajuda a aplicar regras nos fluxos locais e de CI/CD.
+O produto é uma **skill para Vibe Coding**. Ela ajuda o agente de IA a transformar uma ideia em software utilizável: entender o pedido, aproveitar a base existente, implementar uma funcionalidade completa, executar, corrigir erros e iterar com o feedback da pessoa.
 
-A DevExcellence deve continuar simples de adotar e útil tanto para desenvolvedores individuais quanto para equipes. Não deve se transformar em um framework excessivamente complexo, que adicione etapas desnecessárias, aumente o consumo de tokens ou crie dependência de tecnologias específicas.
+A experiência desejada é: **instalar uma vez e desenvolver conversando**. O usuário não precisa conhecer checklists, metodologias, arquitetura ou comandos internos. A skill toma decisões técnicas reversíveis, pergunta apenas quando necessário e mantém a pessoa no controle de decisões importantes.
+
+Qualidade e segurança são guardrails incorporados ao fluxo, não o produto principal. Auditorias extensas e scanners especializados só entram quando o risco ou o pedido justificarem. O CLI é opcional para mantenedores e CI/CD.
 
 ## O que ela ajuda a fazer
 
@@ -41,23 +43,22 @@ A DevExcellence deve continuar simples de adotar e útil tanto para desenvolvedo
 9. **Controle humano:** solicitar aprovação para ações destrutivas, externas, custosas ou fora do escopo.
 10. **Transparência nos resultados:** diferenciar problemas confirmados, hipóteses e itens não verificados.
 
-## Ciclo de trabalho
+## Ciclo de Vibe Coding
 
-1. Identificar as instruções do projeto, arquitetura, linguagem, framework, ferramentas e estado do Git.
-2. Transformar a solicitação em requisitos, riscos e critérios de aceitação.
-3. Selecionar as práticas de engenharia e verificações adequadas.
-4. Planejar a menor implementação coerente.
-5. Implementar em etapas pequenas, com testes e revisões contínuas.
-6. Executar as verificações determinísticas e análises de segurança aplicáveis.
-7. Revisar o diff final e gerar o relatório.
+1. Entender a ideia e o resultado esperado sem exigir uma especificação extensa.
+2. Identificar o mínimo de contexto do projeto e preservar sua stack e identidade visual.
+3. Construir uma primeira fatia funcional de ponta a ponta.
+4. Executar ou testar com as ferramentas disponíveis.
+5. Corrigir falhas e incorporar feedback em iterações curtas.
+6. Entregar um resumo do que funciona, como testar e o que ainda falta.
 
-A skill deve ser utilizada antes da implementação, durante a codificação e depois das alterações. A integração com CI/CD pode atuar como uma camada adicional de controle; um prompt, isoladamente, não garante que toda alteração será validada.
+O agente pergunta apenas quando uma decisão bloqueia o trabalho ou traz impacto significativo. Qualidade e segurança funcionam como guardrails proporcionais; auditorias completas não são aplicadas automaticamente a tarefas simples. Veja [docs/VIBECODING.md](docs/VIBECODING.md).
 
 ## Estrutura do repositório
 
 - `skills/devexcellence/`: pacote instalável completo, com `SKILL.md`, checklists, referências adaptativas e modelos de relatório.
 - `checklists/`: fonte de trabalho dos módulos de qualidade, segurança, APIs, banco, máscaras/formatação, integridade, resiliência, privacidade/LGPD, frontend/acessibilidade, cadeia de suprimentos, observabilidade, backup/recuperação, internacionalização, entrega, testes, performance e Quality Score.
-- `docs/`: documentação de instalação, arquitetura, modos de operação, metodologias, multiagentes, relatórios, escalabilidade, eficiência de contexto e seleção adaptativa.
+- `docs/`: instalação, fluxo de Vibe Coding, eficiência de contexto, checklists e ferramentas complementares.
 - `templates/`: modelos de relatório de auditoria, plano de implementação e registro de achados.
 - `examples/`: exemplos de achados e prompts reutilizáveis.
 - `cli/`: CLI local 0.4.0, auditoria estática de testes, Quality Score, testes unitários e documentação.
