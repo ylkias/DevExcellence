@@ -38,7 +38,7 @@ export function collectChangedFiles(root = process.cwd()) {
   }
   const untracked = spawnSync("git", ["ls-files", "--others", "--exclude-standard"], { cwd: root, encoding: "utf8", shell: false });
   if (untracked.error || untracked.status !== 0) throw new Error("Não foi possível listar arquivos novos no Git.");
-  return [...new Set([...diff.stdout, ...untracked.stdout].join("\n").split(/\r?\n/).map(normalizeFile).filter(Boolean))].sort();
+  return [...new Set([...diff.stdout.split(/\r?\n/), ...untracked.stdout.split(/\r?\n/)].map(normalizeFile).filter(Boolean))].sort();
 }
 
 export function createContextPlan(options = {}) {
