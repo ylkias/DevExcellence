@@ -65,7 +65,7 @@ test("coleta arquivos versionados alterados e untracked em um repositório Git",
     spawnSync("git", ["config", "user.email", "test@example.invalid"], { cwd: f.root });
     spawnSync("git", ["config", "user.name", "Test"], { cwd: f.root });
     fs.writeFileSync(path.join(f.root, "tracked.js"), "const x = 1;\n");
-    assert.equal(spawnSync("git", ["add", "tracked.js"], { cwd: f.root }).status, 0);
+    assert.equal(spawnSync("git", ["add", "-A"], { cwd: f.root }).status, 0);
     assert.equal(spawnSync("git", ["commit", "-m", "fixture"], { cwd: f.root }).status, 0);
     fs.writeFileSync(path.join(f.root, "tracked.js"), "const x = 2;\n");
     fs.writeFileSync(path.join(f.root, "new.ts"), "export {};\n");
