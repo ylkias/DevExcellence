@@ -166,7 +166,7 @@ export function runProjectChecks(options = {}) {
   const threshold = options.failOn === "never" ? Infinity : RANK[options.failOn] ?? RANK.critical;
   const blocking = results.some((x) => ["fail","review"].includes(x.status) && RANK[x.severity] >= threshold);
   return {
-    tool: "DevExcellence CLI", version: "0.2.0", projectRoot: root, generatedAt: new Date().toISOString(), stack,
+    tool: "DevExcellence CLI", version: "0.4.0", projectRoot: root, generatedAt: new Date().toISOString(), stack,
     scope: { networkAccess: false, filesUploaded: false, secretPatternScan: options.includeSecrets !== false, testFileAudit: options.testAudit !== false, configuredCommandsExecuted: Boolean(options.runCommands) },
     summary: { checks: results.length, findings: results.filter((x) => ["fail","review"].includes(x.status)).length, gate: blocking ? "FAIL" : "PASS", failOn: options.failOn || "critical", testAudit: testAudit.summary },
     results,

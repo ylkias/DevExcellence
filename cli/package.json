@@ -1,10 +1,17 @@
 {
-  "name":"@devexcellence/cli",
-  "version":"0.3.0",
-  "private":true,
-  "license":"UNLICENSED",
-  "type":"module",
-  "bin":{"devexcellence":"./bin/devexcellence.js"},
-  "engines":{"node":">=20"},
-  "scripts":{"test":"node --test","check":"node ./bin/devexcellence.js check"}
+  "name": "@devexcellence/cli",
+  "version": "0.4.0",
+  "private": true,
+  "license": "UNLICENSED",
+  "type": "module",
+  "bin": {
+    "devexcellence": "./bin/devexcellence.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test",
+    "check": "node ./bin/devexcellence.js check"
+  }
 }

@@ -2,13 +2,23 @@
 
 ## Papel na arquitetura
 
-A skill continua sendo o produto principal e pode ser usada sem CLI. O CLI 0.3.0 é uma camada local e determinística para coletar verificações reproduzíveis e calcular um score a partir de evidências estruturadas.
+A skill continua sendo o produto principal e pode ser usada sem CLI. O CLI 0.4.0 é uma camada local e determinística para coletar verificações reproduzíveis e calcular um score a partir de evidências estruturadas.
 
 ## Requisitos
 
 - Node.js 20 ou superior.
 - Nenhuma dependência de runtime adicional.
 - Acesso local somente ao diretório de projeto indicado.
+
+## Planejamento de contexto para reduzir tokens
+
+O comando `context-plan` analisa arquivos alterados (staged, unstaged e untracked) e recomenda apenas os checklists correspondentes aos caminhos e riscos reconhecidos. QUALITY, SECURITY e TESTING permanecem como módulos-base. Informe caminhos com `--file` ou use `--all` em auditorias amplas. A estimativa de tokens usa bytes/4 e é somente indicativa; o consumo real deve ser obtido pelas métricas do provedor. Consulte [TOKEN-EFFICIENCY.md](TOKEN-EFFICIENCY.md).
+
+```bash
+node cli/bin/devexcellence.js context-plan
+node cli/bin/devexcellence.js context-plan --file src/api/orders.ts --file prisma/schema.prisma --json
+node cli/bin/devexcellence.js context-plan --all
+```
 
 ## Fluxo de uso
 
@@ -61,6 +71,6 @@ A detecção de segredos usa padrões locais, é sujeita a falsos positivos/nega
 
 O workflow em `.github/workflows/ci.yml` executa validação de sintaxe, testes unitários, verificação de integridade do pacote instalável e smoke test em Node.js 20/22.
 
-## Limitações da versão 0.3.0
+## Limitações da versão 0.4.0
 
 Não executa SAST/DAST, pentest, scanner completo de dependências, análise de container, teste de carga, ML ou orquestração de agentes. Não altera código do projeto. O CLI é opcional e não substitui avaliação técnica humana nem a skill.

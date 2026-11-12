@@ -36,7 +36,7 @@ Classify the work as a new feature, bug fix, refactor, security remediation, per
 
 Before generating or editing implementation code:
 
-1. Read project instructions and relevant documentation, including agent instructions, README, architecture notes, and contribution rules.
+1. Read agent/project instructions and the relevant sections of architecture/contribution documentation. Do not read or re-read an entire README by default; inspect only the sections needed for this task.
 2. Inspect relevant modules and dependencies; do not dump the entire repository unnecessarily.
 3. Identify stack, versions, package manager, build/test/lint/typecheck commands, database, API patterns, authentication, authorization, and deployment assumptions.
 4. Inspect Git status and preserve unrelated/pre-existing user changes.
@@ -69,9 +69,13 @@ Produce an actionable report using `templates/AUDIT-REPORT.md` and record indivi
 
 When approved by the project owner, store persistent local reports under .devexcellence/reports/ with a timestamp or run identifier. Do not commit reports automatically. Reports can expose internal paths, architecture, or vulnerabilities; keep them local and restricted by default.
 
+## Token and context efficiency (mandatory)
+
+Use incremental context by default. Do not read every checklist or repeat full-repository exploration for a localized task. Start from project instructions, the Git diff, directly related source/tests, and only the domain checklists selected for the changed paths and risks. Reuse verified evidence while its inputs remain unchanged. Expand to a broad audit when requested or justified by risk; never omit security, authorization, tenant isolation, data integrity, or relevant regression tests to save tokens. Follow `references/TOKEN-EFFICIENCY.md` and use the CLI `context-plan` when available.
+
 ## Engineering domains
 
-Use the domain checklists in `checklists/` as applicable. Consult `references/MODULE-SELECTION.md` to select modules adaptively for the project profile.
+Use the domain checklists in `checklists/` as applicable. Consult `references/MODULE-SELECTION.md` to select modules adaptively for the project profile. Consult `references/TOKEN-EFFICIENCY.md` for the required incremental context workflow.
 
 ## Seleção adaptativa dos módulos
 

@@ -1,4 +1,4 @@
-# DevExcellence CLI 0.3.0
+# DevExcellence CLI 0.4.0
 
 CLI complementar à skill. Requer Node.js 20+ e não possui dependências de runtime.
 
@@ -14,6 +14,16 @@ node cli/bin/devexcellence.js score
 Após clonar, os comandos podem ser encapsulados por script do projeto. O pacote ainda não está publicado no npm; não instale por `npx` como se fosse um pacote público.
 
 ## Comandos
+
+### context-plan
+
+Seleciona apenas os checklists aplicáveis aos arquivos alterados (staged, unstaged e novos no Git), mantendo QUALITY, SECURITY e TESTING como base. Use múltiplos `--file caminho` para informar escopo manual ou `--all` para incluir todos os módulos. A estimativa de tokens é heurística (bytes/4), não representa a contagem real do provedor.
+
+```bash
+node cli/bin/devexcellence.js context-plan
+node cli/bin/devexcellence.js context-plan --file src/api/orders.ts --file src/services/orders.ts --json
+node cli/bin/devexcellence.js context-plan --all
+```
 
 ### check
 

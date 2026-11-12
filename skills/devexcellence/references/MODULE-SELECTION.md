@@ -59,3 +59,4 @@ Achados críticos abertos bloqueiam aprovação para release, independentemente 
 - Reutilize resultados válidos de ferramentas; confirme versão, configuração e escopo.
 - Não invoque especialistas multiagentes em tarefas triviais.
 - Não reduza a cobertura de segurança ou correção apenas para economizar tokens.
+- Aplique o protocolo incremental descrito em [TOKEN-EFFICIENCY.md](TOKEN-EFFICIENCY.md); use `context-plan` quando disponível para limitar a leitura aos módulos pertinentes.

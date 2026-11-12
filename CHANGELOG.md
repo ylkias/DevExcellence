@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.0 — eficiência de contexto e redução de tokens
+
+- Added an incremental context planner that selects relevant engineering checklists from changed Git paths, with an explicit broad-audit mode.
+- Added the provider-neutral token-efficiency protocol covering progressive context loading, local deterministic tools, evidence reuse, bounded outputs, and model/delegation discipline.
+- Added approximate checklist-size reporting with an explicit warning that it is not provider token usage.
+- Added automated tests for path selection, broad mode, estimates, and Git changed/untracked file discovery.
+
+
 ## 0.3.0 — bloqueio de arquivos de teste em produção
 
 - Added a release-blocking production artifact audit for test-only files, directories, mocks, fixtures, test framework configuration and coverage outputs.

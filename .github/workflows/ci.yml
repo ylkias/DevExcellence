@@ -26,6 +26,7 @@ jobs:
           node --check cli/src/check.js
           node --check cli/src/test-audit.js
           node --check cli/src/production-audit.js
+          node --check cli/src/context-plan.js
           node --check cli/src/score.js
           node --check scripts/validate-skill-package.mjs
       - name: Run CLI unit tests
@@ -35,6 +36,8 @@ jobs:
         run: node scripts/validate-skill-package.mjs
       - name: CLI smoke test
         run: node cli/bin/devexcellence.js check --fail-on never --no-secrets --json
+      - name: Context plan smoke test
+        run: node cli/bin/devexcellence.js context-plan --file src/api/orders.ts --json
       - name: Verify production artifact release gate
         shell: bash
         run: |

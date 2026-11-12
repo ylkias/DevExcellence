@@ -5,13 +5,14 @@ import { fileURLToPath } from "node:url";
 import { runProjectChecks, renderCheckText, renderCheckMarkdown, shouldFail } from "../src/check.js";
 import { createAssessmentTemplate, evaluateAssessment, renderScoreMarkdown } from "../src/score.js";
 import { auditProductionArtifact, renderProductionAuditMarkdown } from "../src/production-audit.js";
+import { createContextPlan, renderContextPlanText } from "../src/context-plan.js";
 const here = path.dirname(fileURLToPath(import.meta.url));
 const pkg = JSON.parse(fs.readFileSync(path.resolve(here, "../package.json"), "utf8"));
 function value(args, flag, fallback) { const i = args.indexOf(flag); return i < 0 ? fallback : args[i + 1] && !args[i + 1].startsWith("--") ? args[i + 1] : true; }
 function has(args, flag) { return args.includes(flag); }
 function save(file, text) { const target = path.resolve(file); fs.mkdirSync(path.dirname(target), { recursive: true }); fs.writeFileSync(target, text, "utf8"); process.stderr.write("Relatório salvo em: " + target + "\n"); }
 function help() {
-  console.log("DevExcellence CLI " + pkg.version + "\n\nComandos:\n  check [--json] [--output arquivo] [--fail-on critical|high|medium|low|never] [--run] [--no-secrets] [--no-test-audit]\n  production-audit --path <artefato> [--json] [--output arquivo.md] [--max-files 50000]\n  release-audit --path <artefato> [--json] [--output arquivo.md] [--max-files 50000]\n  init [--force] [--project nome]\n  score [--input arquivo] [--json] [--output arquivo.md] [--min-coverage 80]\n\nproduction-audit é obrigatório após o build e antes de publicar/deployar. Audite o diretório real do artefato, nunca a raiz do repositório. O CLI não usa rede nem envia arquivos.");
+  console.log("DevExcellence CLI " + pkg.version + "\n\nComandos:\n  context-plan [--file caminho]* [--all] [--json] [--output arquivo]\n  check [--json] [--output arquivo] [--fail-on critical|high|medium|low|never] [--run] [--no-secrets] [--no-test-audit]\n  production-audit --path <artefato> [--json] [--output arquivo.md] [--max-files 50000]\n  release-audit --path <artefato> [--json] [--output arquivo.md] [--max-files 50000]\n  init [--force] [--project nome]\n  score [--input arquivo] [--json] [--output arquivo.md] [--min-coverage 80]\n\ncontext-plan seleciona checklists a partir do diff; use --all para auditoria ampla. A estimativa de tokens é aproximada.\nproduction-audit é obrigatório após o build e antes de publicar/deployar. Audite o diretório real do artefato, nunca a raiz do repositório. O CLI não usa rede nem envia arquivos.");
 }
 async function main() {
   const args = process.argv.slice(2), command = args[0] || "help";
@@ -23,6 +24,33 @@ async function main() {
     fs.mkdirSync(path.dirname(file), { recursive: true });
     fs.writeFileSync(file, JSON.stringify(createAssessmentTemplate(value(args,"--project",path.basename(process.cwd()))),null,2)+"\n");
     console.log("Modelo criado em " + file + ". Registre evidências antes de calcular.");
+    return 0;
+  }
+  if (command === "context-plan") {
+    const explicitFiles = [];
+    for (let i = 1; i < args.length; i++) {
+      if (args[i] === "--file") {
+        const next = args[i + 1];
+        if (!next || next.startsWith("--")) { console.error("--file exige um caminho."); return 2; }
+        explicitFiles.push(next);
+        i++;
+      } else if (args[i].startsWith("--file=")) {
+        const file = args[i].slice("--file=".length);
+        if (!file) { console.error("--file exige um caminho."); return 2; }
+        explicitFiles.push(file);
+      }
+    }
+    let plan;
+    try {
+      plan = createContextPlan({ root: process.cwd(), files: explicitFiles, all: has(args, "--all") });
+    } catch (error) {
+      console.error(error.message);
+      return 2;
+    }
+    const json = has(args, "--json"), output = value(args, "--output", null);
+    const content = json ? JSON.stringify(plan, null, 2) + "\n" : renderContextPlanText(plan) + "\n";
+    if (output) save(output, content);
+    console.log(content.trimEnd());
     return 0;
   }
   if (command === "check") {
