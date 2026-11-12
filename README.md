@@ -19,7 +19,9 @@ A DevExcellence deve continuar simples de adotar e útil tanto para desenvolvedo
 - Identificar lógicas incompletas, código morto, atalhos inseguros, duplicações e código obsoleto.
 - Revisar autenticação, autorização, sessões, funções, permissões e trilhas de auditoria.
 - Identificar riscos em rotas e APIs, endpoints públicos indevidos, ausência de validação, paginação e limites de requisições.
-- Revisar modelagem de banco de dados, relacionamentos, índices, queries parametrizadas, transações, ciclo de vida das conexões e migrations.
+- Revisar modelagem de banco de dados, relacionamentos, índices, queries parametrizadas, transações, integridade referencial, concorrência, ciclo de vida das conexões e migrations.
+- Avaliar resiliência, privacidade/LGPD, acessibilidade, cadeia de suprimentos, observabilidade, backup/recuperação, internacionalização e entrega em produção.
+- Selecionar módulos adaptativamente conforme o tipo, a criticidade e os riscos do projeto, sem aplicar checklists irrelevantes.
 - Aplicar práticas adequadas ao contexto, como TDD, BDD, ATDD, DDD, SOLID, Clean Code, Clean Architecture e DevSecOps.
 - Executar e interpretar testes, análise estática, verificações de dependências e testes de performance usando as ferramentas disponíveis no projeto.
 - Melhorar manutenibilidade, desempenho, escalabilidade e eficiência no uso de contexto e tokens.
@@ -53,7 +55,7 @@ A skill deve ser utilizada antes da implementação, durante a codificação e d
 ## Estrutura do repositório
 
 - `SKILL.md`: instruções centrais da skill, independentes de provedor.
-- `checklists/`: listas de verificação de qualidade, segurança, APIs, banco de dados, máscaras/formatação de campos, testes e performance.
+- `checklists/`: listas de qualidade, segurança, APIs, banco, máscaras/formatação, integridade, resiliência, privacidade/LGPD, frontend/acessibilidade, cadeia de suprimentos, observabilidade, backup/recuperação, internacionalização, entrega, testes, performance e Quality Score.
 - `docs/`: documentação de instalação, arquitetura, modos de operação, metodologias, multiagentes, relatórios e escalabilidade.
 - `templates/`: modelos de relatório de auditoria, plano de implementação e registro de achados.
 - `examples/`: exemplos de achados e prompts reutilizáveis.
