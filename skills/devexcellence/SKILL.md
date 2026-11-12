@@ -65,13 +65,13 @@ Review the final diff for scope creep, leaked secrets, debug code, dead code, mi
 
 ### Phase 4 — Report and handoff (mandatory)
 
-Produce an actionable report using the report template. Include what was reviewed or changed; findings by severity and confidence; evidence and file/line references; recommended or completed corrections; checks actually executed and their results; before/after status where comparable; unresolved items, limitations, residual risks, and next steps.
+Produce an actionable report using `templates/AUDIT-REPORT.md` and record individual findings with `templates/FINDING.md` when useful. Include what was reviewed or changed; findings by severity and confidence; evidence and file/line references; recommended or completed corrections; checks actually executed and their results; before/after status where comparable; unresolved items, limitations, residual risks, and next steps.
 
 When approved by the project owner, store persistent local reports under .devexcellence/reports/ with a timestamp or run identifier. Do not commit reports automatically. Reports can expose internal paths, architecture, or vulnerabilities; keep them local and restricted by default.
 
 ## Engineering domains
 
-Use the domain checklists in checklists/ as applicable.
+Use the domain checklists in `checklists/` as applicable. Consult `references/MODULE-SELECTION.md` to select modules adaptively for the project profile.
 
 ## Seleção adaptativa dos módulos
 
