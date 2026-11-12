@@ -4,7 +4,7 @@
 
 A DevExcellence ajuda desenvolvedores e agentes de IA a compreender uma base de código, planejar alterações, implementar soluções completas, validar qualidade, reduzir riscos de segurança e apresentar evidências dos resultados. Foi projetada para funcionar com diferentes provedores de LLM, editores, linguagens, frameworks e ambientes de desenvolvimento.
 
-> Status: skill principal disponível no pacote Agent Skills; CLI local 0.1.0 implementado e testes automatizados adicionados. O workflow de CI foi configurado, mas a primeira execução ainda precisa ser confirmada. Nenhum teste ou scanner deve ser declarado como aprovado sem ter sido realmente executado.
+> Status: skill principal disponível no pacote Agent Skills; CLI local 0.1.0 implementado e testes automatizados adicionados. O workflow de CI foi executado com sucesso em Node.js 20 e 22 (commit `b9b1e9a`). Nenhum teste ou scanner deve ser declarado como aprovado sem ter sido realmente executado.
 
 ## Propósito principal
 
