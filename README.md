@@ -54,7 +54,7 @@ A skill deve ser utilizada antes da implementação, durante a codificação e d
 
 ## Estrutura do repositório
 
-- `SKILL.md`: instruções centrais da skill, independentes de provedor.
+- `skills/devexcellence/SKILL.md`: skill instalável e instruções centrais, independentes de provedor.
 - `checklists/`: listas de qualidade, segurança, APIs, banco, máscaras/formatação, integridade, resiliência, privacidade/LGPD, frontend/acessibilidade, cadeia de suprimentos, observabilidade, backup/recuperação, internacionalização, entrega, testes, performance e Quality Score.
 - `docs/`: documentação de instalação, arquitetura, modos de operação, metodologias, multiagentes, relatórios e escalabilidade.
 - `templates/`: modelos de relatório de auditoria, plano de implementação e registro de achados.
@@ -70,7 +70,7 @@ Instale diretamente do GitHub usando o Skills CLI:
 npx skills add https://github.com/ylkias/DevExcellence --skill devexcellence
 ```
 
-O repositório contém o `SKILL.md` na raiz, com o identificador `devexcellence`. O instalador permite selecionar um agente de IA compatível e o escopo da instalação. Consulte [docs/INSTALLATION.md](docs/INSTALLATION.md) para orientações sobre autenticação em repositórios privados, instalação global e alternativas manuais.
+O repositório disponibiliza a skill em `skills/devexcellence/`, com seus checklists, referências e modelos de relatório no mesmo pacote. Essa estrutura é descoberta pelo Skills CLI. O instalador permite selecionar um agente de IA compatível e o escopo da instalação. Consulte [docs/INSTALLATION.md](docs/INSTALLATION.md) para orientações sobre autenticação em repositórios privados, instalação global e alternativas manuais.
 
 ## Escopo e limitações atuais
 
