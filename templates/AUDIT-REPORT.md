@@ -1,58 +1,86 @@
-# DevExcellence — Audit and validation report
+# DevExcellence — Relatório de auditoria e validação
 
-## Run information
+## Informações da execução
 
-- Project:
+- Projeto:
 - Branch/commit:
-- Date/time:
-- Mode: Audit / Plan / Implement / Verify
-- Scope:
-- Stack and versions:
-- DevExcellence version:
+- Data/hora:
+- Modo: Auditoria / Planejamento / Implementação / Verificação
+- Escopo:
+- Stack e versões:
+- Versão da DevExcellence:
+- Perfil identificado:
 
-## Executive summary
+## Resumo executivo
 
-- Overall status: Passed / Failed / Partial / Not verified
-- Confirmed findings:
-- Critical/high risks:
-- Corrections completed:
-- Main remaining risks:
+- Status geral: Aprovado / Reprovado / Parcial / Provisório / Não verificado
+- Achados confirmados:
+- Riscos críticos/altos:
+- Correções concluídas:
+- Principais riscos restantes:
 
-## Scope and methodology
+## Quality Score
 
-Describe what was inspected, excluded, and why. List specialists used, if any.
+- Pontuação geral (0–100):
+- Status da pontuação: Definitivo / Provisório / Não calculado
+- Cobertura da avaliação (% do peso aplicável efetivamente avaliado):
+- Perfil/pesos utilizados:
+- Justificativa para pesos ajustados:
 
-## Findings
+| Dimensão | Peso | Nota | Evidência/observações |
+|---|---:|---:|---|
+| Segurança e controle de acesso | 20 | | |
+| Integridade e consistência dos dados | 15 | | |
+| Qualidade de código e arquitetura | 15 | | |
+| Testes e validação | 15 | | |
+| APIs e contratos | 10 | | |
+| Performance e escalabilidade | 10 | | |
+| Resiliência e confiabilidade | 5 | | |
+| Privacidade e proteção de dados | 5 | | |
+| Operação, observabilidade e recuperação | 5 | | |
 
-| ID | Severity | Confidence | File/line | Evidence | Impact | Recommendation | Status |
+**Gate de release:** aprovado / bloqueado / não avaliado. Liste qualquer achado crítico aberto e os achados altos que dependem de aceitação formal de risco.
+
+## Escopo e metodologia
+
+Descreva o que foi inspecionado, o que ficou fora do escopo e por quê. Liste especialistas utilizados, se houver.
+
+## Módulos selecionados
+
+| Módulo | Aplicável? | Estado | Justificativa/evidência |
+|---|---|---|---|
+
+## Achados
+
+| ID | Severidade | Confiança | Arquivo/linha | Evidência | Impacto | Recomendação | Estado |
 |---|---|---|---|---|---|---|---|
 
-## Checks executed
+## Verificações executadas
 
-| Check | Command/tool | Status | Evidence/result | Notes |
+| Verificação | Comando/ferramenta | Estado | Evidência/resultado | Observações |
 |---|---|---|---|---|
 | Build | | | | |
-| Lint/format | | | | |
-| Type check | | | | |
-| Unit tests | | | | |
-| Integration/E2E | | | | |
-| Security/dependencies | | | | |
-| Performance/load | | | | |
+| Lint/formatação | | | | |
+| Tipagem | | | | |
+| Testes unitários | | | | |
+| Integração/E2E | | | | |
+| Segurança/dependências | | | | |
+| Performance/carga | | | | |
 
-Use only Passed, Failed, Not run, Blocked, or Not applicable.
+Use somente: Aprovado, Reprovado, Não executado, Bloqueado ou Não aplicável.
 
-## Corrections and before/after
+## Correções e comparação antes/depois
 
-For each correction, describe root cause, files changed, behavior before, behavior after, and regression test.
+Para cada correção, descreva causa raiz, arquivos alterados, comportamento anterior, comportamento posterior e teste de regressão.
 
-## Unverified items and limitations
+## Itens não verificados e limitações
 
-State checks not run, unavailable tools, inaccessible environments, assumptions, and reasons.
+Informe verificações não executadas, ferramentas indisponíveis, ambientes inacessíveis, suposições e motivos.
 
-## Residual risks and recommendations
+## Riscos residuais e recomendações
 
-Prioritize next actions. Do not describe unresolved risks as fixed.
+Priorize as próximas ações. Não descreva riscos não resolvidos como corrigidos.
 
-## Final assessment
+## Avaliação final
 
-State whether acceptance criteria were met and list any conditions required before merge or release.
+Declare se os critérios de aceitação foram atendidos e quais condições são necessárias antes de merge ou release.
