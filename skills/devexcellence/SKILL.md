@@ -114,6 +114,35 @@ Review applicable OWASP risks, including injection, broken access control, authe
 - Add timeout and bounded retry behavior to outbound integrations.
 - Do not mistake a hidden frontend link for server-side protection.
 
+#### Field masks, presentation, and normalization
+
+- Treat **input mask**, **format validation**, and **stored canonical value** as separate concerns. A visual mask is for usability; it is not proof that the value is valid or secure.
+- Define masks from the field's business meaning and the user's locale/country. Do not hardcode Brazilian formats as universal rules.
+- Apply formatting consistently when typing, pasting, editing existing records, and displaying values.
+- The frontend may guide input, but the server must independently validate and normalize it. APIs should accept only documented formats (or explicitly support formatted and unformatted variants).
+- Reject incomplete or invalid values with useful field-level errors. Never silently truncate, discard meaningful digits, or save a partially masked value as valid.
+- Normalize values before persistence and use one canonical representation across services and integrations:
+  - CPF/CNPJ: store digits only as strings; preserve leading zeros.
+  - CEP: store digits only as a string.
+  - Phone: normalize to international E.164 form where possible, retaining country context; do not assume every number is Brazilian.
+  - Date/time: use locale-aware presentation but store/transport unambiguous ISO 8601 or the database's appropriate date/time type.
+  - Currency: format for display by locale, but use exact decimal representation for calculations and persistence; do not parse localized display text as a floating-point amount.
+- Validate domain rules separately from syntax: for example, CPF/CNPJ check digits, phone numbering plans, and date/calendar validity. A correctly shaped mask does not make a value valid.
+- CEP format validation is not proof of address existence or deliverability; use an approved address lookup only when the product requires it.
+- Ensure masks support paste, autofill, mobile keyboards, cursor movement, deletion, screen readers, and keyboard-only navigation. Do not break input composition or accessibility.
+- Do not apply rigid masks to free-form text, passwords, arbitrary identifiers, or international data where the format is variable.
+- Test formatted and unformatted inputs, partial input, invalid check digits, min/max lengths, paste, editing in the middle of a value, locale variations, and normalization round-trips.
+- Never write raw personal identifiers or phone numbers to application logs unless strictly necessary and explicitly protected.
+
+Brazilian examples (configure by product locale, not as global defaults):
+- CPF: `000.000.000-00`
+- CNPJ: `00.000.000/0000-00`
+- CEP: `00000-000`
+- Mobile phone: `(00) 00000-0000`
+- Landline: `(00) 0000-0000`
+- Date display: `DD/MM/AAAA`; API/storage: ISO 8601 or a proper date type
+- Currency display: `R$ 1.234,56`; storage/calculation: exact decimal value
+
 ### 5. Database and persistence
 - Define and justify field sizes and types from business rules, expected growth, interoperability, and storage/query behavior; do not choose arbitrary lengths or copy generic limits blindly.
 - Align application validation, API schemas, and database column constraints so they accept/reject the same values.
