@@ -54,9 +54,9 @@ A skill deve ser utilizada antes da implementação, durante a codificação e d
 
 ## Estrutura do repositório
 
-- `skills/devexcellence/SKILL.md`: skill instalável e instruções centrais, independentes de provedor.
-- `checklists/`: listas de qualidade, segurança, APIs, banco, máscaras/formatação, integridade, resiliência, privacidade/LGPD, frontend/acessibilidade, cadeia de suprimentos, observabilidade, backup/recuperação, internacionalização, entrega, testes, performance e Quality Score.
-- `docs/`: documentação de instalação, arquitetura, modos de operação, metodologias, multiagentes, relatórios e escalabilidade.
+- `skills/devexcellence/`: pacote instalável completo, com `SKILL.md`, checklists, referências adaptativas e modelos de relatório.
+- `checklists/`: fonte de trabalho dos módulos de qualidade, segurança, APIs, banco, máscaras/formatação, integridade, resiliência, privacidade/LGPD, frontend/acessibilidade, cadeia de suprimentos, observabilidade, backup/recuperação, internacionalização, entrega, testes, performance e Quality Score.
+- `docs/`: documentação de instalação, arquitetura, modos de operação, metodologias, multiagentes, relatórios, escalabilidade e seleção adaptativa.
 - `templates/`: modelos de relatório de auditoria, plano de implementação e registro de achados.
 - `examples/`: exemplos de achados e prompts reutilizáveis.
 - `cli/`: escopo planejado do CLI determinístico.
