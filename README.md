@@ -62,13 +62,19 @@ O agente pergunta apenas quando uma decisão bloqueia o trabalho ou traz impacto
 
 ## Instalação rápida
 
-Instale diretamente do GitHub usando o Skills CLI:
+### Instalação global
+
+Para agentes que oferecem instalação global, instale diretamente do GitHub usando o Skills CLI:
 
 ```bash
 npx skills add https://github.com/ylkias/DevExcellence --skill devexcellence --agent '*' --global --yes
 ```
 
-A instalação acima disponibiliza a DevExcellence globalmente para todos os agentes compatíveis detectados pelo Skills CLI. Depois, basta abrir/recarregar o agente e pedir tarefas de desenvolvimento normalmente: a seleção de contexto e a economia de tokens são aplicadas automaticamente pela skill. **Não é necessário executar `context-plan`, `check` ou outro comando DevExcellence para começar a usar.** Cada usuário precisa ter acesso de leitura ao repositório enquanto ele permanecer privado. Consulte [docs/INSTALLATION.md](docs/INSTALLATION.md) apenas para autenticação e solução de problemas.
+O comando disponibiliza a DevExcellence globalmente para os agentes compatíveis detectados pelo Skills CLI. Depois, basta abrir/recarregar o agente e pedir tarefas de desenvolvimento normalmente: a seleção de contexto e a economia de tokens são aplicadas automaticamente pela skill.
+
+**Exceção: Eve e PromptScript não oferecem instalação global.** Para esses dois agentes, use a instalação por projeto descrita em [docs/INSTALLATION.md](docs/INSTALLATION.md). Se o comando global informar que esses agentes não suportam esse modo, a mensagem se aplica somente a eles.
+
+Cada usuário precisa ter acesso de leitura ao repositório enquanto ele permanecer privado. Consulte [docs/INSTALLATION.md](docs/INSTALLATION.md) para autenticação, instalação por projeto e solução de problemas.
 
 ## Ferramentas complementares (opcionais)
 

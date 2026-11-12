@@ -1,11 +1,15 @@
 # Changelog
 
+## Documentação de instalação — Eve e PromptScript
+
+- Documenta a instalação global para agentes compatíveis e a instalação por projeto para Eve e PromptScript, usando o mesmo repositório e a mesma skill.
+- Esclarece que avisos de incompatibilidade com instalação global nesses dois agentes não representam falha da instalação nos demais.
+
 ## Direção do produto — foco em Vibe Coding
 
 - Posiciona a DevExcellence como uma skill prática para transformar ideias em aplicações funcionais por meio de linguagem natural e iteração rápida.
 - Mantém segurança e qualidade como guardrails proporcionais, não como auditoria empresarial obrigatória em toda tarefa.
 - Prioriza construir, executar, corrigir e iterar, com interação simples e mínima burocracia para o usuário.
-
 
 ## 0.4.0 — eficiência de contexto e redução de tokens
 
@@ -13,7 +17,7 @@
 - Added the provider-neutral token-efficiency protocol covering progressive context loading, local deterministic tools, evidence reuse, bounded outputs, and model/delegation discipline.
 - Added approximate checklist-size reporting with an explicit warning that it is not provider token usage.
 - Added automated tests for path selection, broad mode, estimates, and Git changed/untracked file discovery.
-- Simplified end-user onboarding to one global installation command for all detected compatible agents; token/context optimization now runs as part of the skill without requiring the separate CLI.
+- Simplified end-user onboarding to one global installation command for detected agents that support global skills. Eve and PromptScript are documented as project-scoped installation exceptions.
 
 
 ## 0.3.0 — bloqueio de arquivos de teste em produção
