@@ -2,6 +2,8 @@
 
 ## Product boundary
 
+The canonical installable skill lives in `skills/devexcellence/` and follows the Skills CLI discovery layout `skills/<name>/SKILL.md`. Keep its checklists, references, and templates inside that directory so they travel with the skill when installed. The repository root contains project documentation and the source-of-truth checklists/templates for maintainers.
+
 The core product is the portable engineering skill. Its purpose is to guide the AI agent through understanding, planning, implementation, verification, and reporting. Keep the skill easy to install and detailed enough to produce consistent engineering behavior.
 
 Supporting layers:
