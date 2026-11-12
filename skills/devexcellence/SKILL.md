@@ -116,6 +116,8 @@ Review applicable OWASP risks, including injection, broken access control, authe
 
 #### Field masks, presentation, and normalization
 
+Use the companion checklist `checklists/FORMATTING.md` for field-by-field review and acceptance criteria.
+
 - Treat **input mask**, **format validation**, and **stored canonical value** as separate concerns. A visual mask is for usability; it is not proof that the value is valid or secure.
 - Define masks from the field's business meaning and the user's locale/country. Do not hardcode Brazilian formats as universal rules.
 - Apply formatting consistently when typing, pasting, editing existing records, and displaying values.
