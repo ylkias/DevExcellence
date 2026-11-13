@@ -39,7 +39,7 @@ Abra o terminal e execute:
 npx skills add https://github.com/ylkias/DevExcellence --skill devexcellence --agent '*' --global --yes
 ```
 
-Esse comando instala a skill globalmente nos agentes compatíveis encontrados pelo instalador.
+Essa opção é feita uma vez no computador e deixa a skill disponível em vários projetos, nos agentes compatíveis encontrados pelo instalador.
 
 ### 2. Para Eve e PromptScript
 
@@ -94,7 +94,7 @@ Eve é uma das ferramentas de IA para programação que pode usar skills. Ela n�
 
 **Preciso usar Eve ou PromptScript?**
 
-Não. Eles são apenas duas das opções. Você pode usar qualquer ferramenta compatível com o formato Agent Skills e com o instalador.
+Não. Eles são apenas duas das opções. Você pode usar outras ferramentas de programação com IA que aceitem esse tipo de instrução adicional (skill).
 
 **A DevExcellence é gratuita e de código aberto?**
 
