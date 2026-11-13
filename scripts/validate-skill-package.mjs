@@ -11,6 +11,16 @@ if(fs.existsSync(path.join(root,"SKILL.md"))) errors.push("Remova SKILL.md da ra
 const skill=fs.existsSync(path.join(pkg,"SKILL.md"))?fs.readFileSync(path.join(pkg,"SKILL.md"),"utf8"):"";
 const fm=skill.match(/^---\s*\n([\s\S]*?)\n---/);
 if(!fm||!/^name:\s*devexcellence\s*$/m.test(fm[1])||!/^description:\s*\S/m.test(fm[1]))errors.push("Frontmatter Agent Skills inválido.");
+if(fm){
+  const description=fm[1].match(/^description:\s*(.+)$/m)?.[1]??"";
+  if(description.length>1024)errors.push("A description excede 1024 caracteres.");
+  if(!/automatically activate/i.test(description)||!/first conversation/i.test(description))errors.push("A description precisa declarar ativação automática na primeira conversa.");
+}
+const openaiPath=path.join(pkg,"agents","openai.yaml");
+if(fs.existsSync(openaiPath)){
+  const openai=fs.readFileSync(openaiPath,"utf8");
+  if(!/^policy:\s*\n\s+allow_implicit_invocation:\s*true\s*$/m.test(openai))errors.push("agents/openai.yaml precisa manter allow_implicit_invocation: true.");
+}
 for(const [,link] of skill.matchAll(/\[[^\]]+\]\(([^)]+)\)/g)){
   if(/^(https?:|mailto:|#)/i.test(link))continue;
   const target=path.resolve(pkg,decodeURIComponent(link.split("#")[0]));
