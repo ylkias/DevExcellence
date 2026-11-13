@@ -77,7 +77,7 @@ Instale o Node.js e abra um novo terminal. O comando `npx` é fornecido junto co
 
 **O GitHub informa que não tenho acesso ao repositório**
 
-Enquanto o repositório estiver privado, sua conta precisa ter permissão de leitura. Solicite acesso ao responsável pelo projeto e configure a autenticação GitHub na sua máquina.
+Enquanto o repositório estiver privado, sua conta precisa ter permissão de leitura. Depois que ele for tornado público, qualquer pessoa poderá acessar o código sem convite ou autenticação do repositório.
 
 **Eve ou PromptScript aparecem como incompatíveis com instalação global**
 

@@ -96,9 +96,25 @@ Eve é uma das ferramentas de IA para programação que pode usar skills. Ela n�
 
 Não. Eles são apenas duas das opções. Você pode usar outras ferramentas de programação com IA que aceitem esse tipo de instrução adicional (skill).
 
-**A DevExcellence é gratuita e de código aberto?**
+**Posso usar a DevExcellence gratuitamente?**
 
-O repositório está em preparação para uma possível publicação. A licença ainda precisa ser definida. Tornar o repositório público, por si só, não concede autorização para copiar, modificar ou redistribuir o conteúdo. Consulte a seção sobre licença abaixo antes de reutilizar o projeto.
+Sim. A licença permite utilizar, estudar, modificar e compartilhar o projeto para fins não comerciais.
+
+**Posso vender a DevExcellence ou usá-la comercialmente?**
+
+Não. A licença não permite vender, oferecer como serviço pago ou incorporar o projeto em produtos e serviços comerciais sem autorização específica do titular dos direitos. Em caso de dúvida sobre uma situação concreta, peça autorização antes de usar.
+
+**Posso modificar e compartilhar minha versão?**
+
+Sim, desde que o uso e a distribuição continuem dentro das condições não comerciais da licença e que o aviso de licença seja mantido.
+
+**Posso contribuir com o projeto?**
+
+Sim. Qualquer pessoa pode sugerir melhorias, relatar problemas e enviar alterações por meio de Pull Requests. As contribuições aceitas serão distribuídas sob a mesma licença não comercial. Você mantém os direitos autorais do que criou e confirma que tem autorização para enviar o conteúdo.
+
+**A DevExcellence é open source?**
+
+O código fica disponível para consulta, estudo, modificação e compartilhamento não comercial. Como a licença restringe uso comercial, o projeto é *source-available* (código-fonte disponível), mas não é open source no sentido tradicional das definições da OSI.
 
 ## Para quem quer conhecer os detalhes técnicos
 
@@ -110,8 +126,9 @@ O uso normal não exige conhecer a estrutura interna. Quem quiser entender o fun
 - [Como contribuir](CONTRIBUTING.md)
 - [Política de segurança](SECURITY.md)
 
-## Situação da licença
+## Licença e uso
 
-A licença atual reserva todos os direitos e não autoriza uso, cópia, modificação ou redistribuição. **Antes de divulgar o repositório como projeto de código aberto, será necessário escolher e publicar uma licença adequada**, além de revisar os termos de contribuição.
+Este projeto é disponibilizado sob a **PolyForm Noncommercial License 1.0.0**. Ela permite uso, estudo, modificação e distribuição para fins não comerciais. O uso comercial não está autorizado por esta licença.
 
-Enquanto o repositório estiver privado, quem for instalar também precisa ter acesso de leitura ao GitHub. Quando o código estiver público, o acesso ao repositório não dependerá de convite.
+Leia o texto completo em [LICENSE](LICENSE) ou no [site oficial da PolyForm](https://polyformproject.org/licenses/noncommercial/1.0.0).
+

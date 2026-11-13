@@ -1,12 +1,18 @@
 # Histórico de alterações
 
+## Licença e contribuições da comunidade
+
+- Adota PolyForm Noncommercial License 1.0.0 para permitir uso, estudo, modificação e distribuição não comerciais.
+- Esclarece que o projeto é source-available, não open source tradicional, devido à restrição de uso comercial.
+- Define que contribuições aceitas permanecem sob a mesma licença e que os colaboradores mantêm os direitos autorais do próprio trabalho.
+- Documenta o fluxo para Issues, Pull Requests e confirmação dos termos de contribuição.
+
 ## Documentação mais simples
 
 - Reescreve a página inicial para explicar a DevExcellence em linguagem direta, sem exigir conhecimento prévio sobre skills ou agentes de IA.
 - Explica o que é uma skill, como instalar e como começar a conversar com a ferramenta de programação.
 - Mostra os comandos de instalação global e por projeto, incluindo Eve e PromptScript.
 - Explica o papel de Eve e esclarece que ela não é necessária para usar a DevExcellence.
-- Destaca que a licença precisa ser definida antes de apresentar o repositório como projeto de código aberto.
 
 ## Direção do produto — foco em Vibe Coding
 
