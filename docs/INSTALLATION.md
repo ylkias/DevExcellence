@@ -6,7 +6,7 @@ Este guia mostra como instalar a DevExcellence na sua ferramenta de programaçã
 
 Você precisa ter:
 
-- Uma ferramenta de programação com IA compatível com o formato Agent Skills.
+- Uma ferramenta de programação com IA que aceite a instalação de skills.
 - Node.js instalado, para executar o comando `npx`.
 - Acesso de leitura ao repositório GitHub enquanto ele estiver privado.
 
@@ -14,7 +14,12 @@ A DevExcellence não instala uma ferramenta de IA para você. Ela adiciona instr
 
 ## Escolha como instalar
 
-Na maioria das ferramentas compatíveis, a instalação pode ser global. Eve e PromptScript precisam da instalação dentro de cada projeto.
+Há duas formas de instalação:
+
+- **Global:** você instala uma vez no computador e pode usar a skill em vários projetos, nas ferramentas compatíveis.
+- **Por projeto:** a skill fica disponível somente no projeto em cuja pasta você executou o comando.
+
+Na maioria das ferramentas compatíveis, você pode instalar globalmente. Eve e PromptScript precisam da instalação dentro de cada projeto.
 
 ### Opção A — instalação global
 
@@ -30,7 +35,7 @@ O instalador procura as ferramentas compatíveis disponíveis no computador e in
 
 ### Opção B — Eve e PromptScript
 
-Eve e PromptScript são ferramentas de IA usadas para programar. Elas não aceitam a instalação global da skill pelo Skills CLI.
+Eve e PromptScript são ferramentas de programação com IA. Elas não aceitam a instalação global da skill pelo Skills CLI.
 
 Para instalar, abra o terminal **na pasta principal do projeto** em que deseja usar a DevExcellence e execute:
 
