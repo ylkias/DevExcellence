@@ -72,7 +72,17 @@ npx skills add https://github.com/ylkias/DevExcellence --skill devexcellence --a
 
 O comando disponibiliza a DevExcellence globalmente para os agentes compatíveis detectados pelo Skills CLI. Depois, basta abrir/recarregar o agente e pedir tarefas de desenvolvimento normalmente: a seleção de contexto e a economia de tokens são aplicadas automaticamente pela skill.
 
-**Exceção: Eve e PromptScript não oferecem instalação global.** Para esses dois agentes, use a instalação por projeto descrita em [docs/INSTALLATION.md](docs/INSTALLATION.md). Se o comando global informar que esses agentes não suportam esse modo, a mensagem se aplica somente a eles.
+### Eve e PromptScript (instalação por projeto)
+
+Para usar a mesma skill no Eve ou PromptScript, abra o terminal **na pasta raiz do projeto** e execute:
+
+```bash
+npx skills add https://github.com/ylkias/DevExcellence --skill devexcellence --yes --agent eve promptscript
+```
+
+Esse comando usa o **mesmo repositório GitHub**, mas instala a skill somente no projeto atual. Repita-o em cada projeto onde quiser utilizá-la com esses agentes. Não inclua `--global`.
+
+**Importante:** Eve e PromptScript não oferecem instalação global pelo Skills CLI. Portanto, se aparecerem como incompatíveis no resultado do comando global, isso não significa que a instalação falhou nos outros agentes.
 
 Cada usuário precisa ter acesso de leitura ao repositório enquanto ele permanecer privado. Consulte [docs/INSTALLATION.md](docs/INSTALLATION.md) para autenticação, instalação por projeto e solução de problemas.
 
