@@ -1,5 +1,12 @@
 # Histórico de alterações
 
+## Ativação automática e primeira conversa
+
+- Amplia a descrição da skill para acionar por correspondência implícita em pedidos comuns de desenvolvimento e na primeira conversa orientada ao projeto.
+- Adiciona orientação inicial leve e somente de consulta para identificar estrutura, stack e instruções do workspace.
+- Adiciona metadados OpenAI com ativação implícita habilitada.
+- Documenta exemplos positivos/negativos e os limites de seleção automática conforme o agente hospedeiro.
+
 ## Licença e contribuições da comunidade
 
 - Adota PolyForm Noncommercial License 1.0.0 para permitir uso, estudo, modificação e distribuição não comerciais.

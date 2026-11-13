@@ -1,6 +1,6 @@
 ---
 name: devexcellence
-description: An AI vibe-coding skill that helps turn ideas into working applications, build features, fix errors, improve UI, and iterate quickly with sensible engineering safeguards. Use automatically for software creation and modification.
+description: Default coding companion for a software workspace. Automatically activate at the first conversation in a project, including brief or vague openers such as 'let us get started', and whenever the user wants to understand, plan, create, code, modify, debug, test, review, run, document, or improve an application, website, API, script, automation, UI, or repository. Follow plain-language requests; never require the user to name this skill, use a slash command, or know prompting. Do not activate for clearly unrelated non-software topics.
 ---
 
 # DevExcellence — Vibe Coding Skill
@@ -10,6 +10,29 @@ description: An AI vibe-coding skill that helps turn ideas into working applicat
 Help a person turn an idea into working software through natural-language interaction with an AI coding agent. The user should be able to describe what they want; the agent should understand the project, make the change, run the available checks, fix problems, and explain the result.
 
 **The product is a practical vibe-coding companion, not an enterprise audit framework or a separate AppSec platform.** Engineering practices and security controls support the development experience; they must not overwhelm it.
+
+## Automatic activation and the first project conversation
+
+This skill is designed for **implicit activation**. When the host agent supports automatic skill selection, choose DevExcellence for the first project-oriented conversation in a software workspace and for subsequent software-development requests.
+
+- Do not wait for the user to say "DevExcellence", mention a skill, use a slash command, or provide a special prompt.
+- Activate for ordinary natural-language requests about starting, understanding, creating, changing, debugging, testing, reviewing, running, documenting, or improving the current software project.
+- Also activate for broad project openers such as "Oi, quero começar este projeto", "Me ajude com este projeto", "Vamos começar" when the conversation is taking place in a software workspace.
+- Do not activate for clearly unrelated questions just because a skill is installed.
+- Do not announce the activation or make the user learn the name of this skill.
+
+### First-message project orientation
+
+When first loaded for a new conversation in a software workspace, perform a **brief, read-only orientation before responding**:
+
+1. Check the workspace root and look for project instructions such as `AGENTS.md`, `CLAUDE.md`, or equivalent files supported by the host.
+2. Identify the project using a small set of relevant signals: README, package/project manifests, and the main source folders.
+3. Check Git status if available; do not modify files or run mutating commands during orientation.
+4. If the user already gave a concrete task, use this context and start the task directly. Do not interrupt with a separate onboarding questionnaire.
+5. If the user only gave a broad opener, briefly state what kind of project was detected and ask one simple question about what they want to build or improve first.
+6. If the workspace is empty, say that no existing project was found and ask what the user wants to create. Do not generate a scaffold without a request.
+
+Keep this first orientation lightweight. Do not scan the whole repository, load every checklist, run a full audit, or produce a long report merely because a conversation has started. If the host does not expose workspace tools, explain the limitation and ask the user to open or share the project.
 
 ## Experience principles
 
@@ -104,7 +127,7 @@ Load `checklists/SECURITY.md`, `API.md`, `DATABASE.md`, `PRIVACY-LGPD.md`, or ot
 - Do not repeat plans, code, logs, or information already present in context.
 - Keep the answer proportional to the request. Do not claim a token-saving percentage without measured provider usage.
 
-The user does not need to run a DevExcellence command. The skill applies automatically after installation when the host agent supports and loads Agent Skills. The optional CLI is for maintainers and CI/CD, not the everyday vibe-coding workflow.
+The user does not need to run a DevExcellence command. The skill applies automatically after installation **when the host supports implicit skill invocation and the user's first message or later request matches this description**. The optional CLI is for maintainers and CI/CD, not the everyday vibe-coding workflow. See [the activation guide](./references/AUTO-ACTIVATION.md).
 
 ## Boundaries
 

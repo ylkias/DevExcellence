@@ -47,11 +47,15 @@ A instalação será feita somente nesse projeto. Para usar a DevExcellence em o
 
 **Você usará o mesmo repositório e a mesma skill.** Só muda o local em que os arquivos são instalados.
 
-## Depois de instalar
+## Como a skill começa a trabalhar automaticamente
 
 1. Feche e abra novamente sua ferramenta de programação com IA, ou recarregue-a.
 2. Abra o projeto em que a skill está disponível.
-3. Escreva o que deseja criar, melhorar ou corrigir.
+3. Envie uma mensagem normal sobre o projeto. Por exemplo: “Oi, quero começar a trabalhar neste projeto. Me ajude a entender por onde começar.”
+
+Em ferramentas que suportam ativação implícita, o agente identifica o pedido pela descrição da DevExcellence e carrega a skill sem que você precise mencionar o nome dela ou digitar um comando. Na primeira ativação, ela faz uma leitura inicial breve do projeto e usa esse contexto para responder ou executar a tarefa.
+
+**Importante:** instalar a skill a deixa disponível para o agente, mas a seleção automática depende do suporte e das regras de cada ferramenta de IA. A skill só é carregada quando você envia uma mensagem; ela não inicia sozinha em segundo plano ao abrir uma pasta. Consulte [AUTO-ACTIVATION.md](AUTO-ACTIVATION.md) para entender e testar esse comportamento.
 
 Por exemplo:
 

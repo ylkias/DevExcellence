@@ -1,0 +1,7 @@
+interface:
+  display_name: "DevExcellence"
+  short_description: "Automatically guides AI coding in the current project"
+  default_prompt: "Look at this project, understand its current structure, and help me build or improve it from my natural-language request. Start with a brief project orientation without requiring me to name or invoke a skill."
+
+policy:
+  allow_implicit_invocation: true

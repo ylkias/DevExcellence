@@ -59,7 +59,9 @@ Depois da instalação, abra ou reinicie sua ferramenta de programação com IA.
 
 Você não precisa executar comandos da DevExcellence antes de cada pedido, conhecer checklists ou escrever prompts especiais.
 
-Consulte o [guia de instalação](docs/INSTALLATION.md) para mais detalhes e solução de problemas.
+**Primeira conversa no projeto:** depois de instalar e reabrir a ferramenta de IA, envie uma mensagem normal sobre o projeto — por exemplo, “Oi, me ajude a começar este projeto”. Em ferramentas que oferecem ativação automática, a descrição da DevExcellence permite que ela seja carregada sem você chamar a skill pelo nome. Na primeira ativação, ela faz uma leitura inicial breve do projeto. Abrir a pasta sem enviar uma mensagem não inicia a skill; a ativação acontece quando a ferramenta recebe seu pedido.
+
+Consulte o [guia de instalação](docs/INSTALLATION.md) e o [guia de ativação automática](docs/AUTO-ACTIVATION.md) para mais detalhes e solução de problemas.
 
 ## O que a DevExcellence faz durante o desenvolvimento?
 

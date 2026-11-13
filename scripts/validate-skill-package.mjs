@@ -5,7 +5,7 @@ const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),"..");
 const pkg=path.join(root,"skills","devexcellence");
 const errors=[];
 const requireFile=(p)=>{if(!fs.existsSync(path.join(pkg,p)))errors.push("Ausente: skills/devexcellence/"+p);};
-requireFile("SKILL.md"); requireFile("references/MODULE-SELECTION.md");
+requireFile("SKILL.md"); requireFile("references/MODULE-SELECTION.md"); requireFile("references/AUTO-ACTIVATION.md"); requireFile("agents/openai.yaml");
 for(const p of ["checklists","references","templates"]) if(!fs.statSync(path.join(pkg,p),{throwIfNoEntry:false})?.isDirectory()) errors.push("Diretório ausente: "+p);
 if(fs.existsSync(path.join(root,"SKILL.md"))) errors.push("Remova SKILL.md da raiz; o pacote canônico fica em skills/devexcellence.");
 const skill=fs.existsSync(path.join(pkg,"SKILL.md"))?fs.readFileSync(path.join(pkg,"SKILL.md"),"utf8"):"";
