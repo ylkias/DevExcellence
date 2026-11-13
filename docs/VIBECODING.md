@@ -1,61 +1,64 @@
-# DevExcellence — foco em Vibe Coding
+# Desenvolver conversando com IA
 
-## O que é
+## O que é Vibe Coding?
 
-A DevExcellence é uma skill para tornar o desenvolvimento com IA mais simples e produtivo. A pessoa descreve em linguagem natural o que quer construir; o agente entende a base, implementa uma primeira versão funcional, testa, corrige e evolui o produto em ciclos curtos.
+Vibe Coding é uma forma de desenvolver software conversando com uma ferramenta de inteligência artificial.
 
-A DevExcellence não é um framework, um gerador de boilerplate, uma plataforma AppSec ou uma metodologia corporativa que o usuário precise operar. É uma camada de orientação para agentes de programação.
+Em vez de começar escrevendo uma especificação técnica, você explica o que deseja criar. A IA ajuda a transformar essa ideia em código. Você experimenta o resultado, dá novas orientações e melhora o projeto aos poucos.
 
-## Experiência desejada
+Por exemplo, você pode começar com:
 
-**Instalar uma vez. Desenvolver conversando.**
+> Quero um sistema para cadastrar clientes e acompanhar os pagamentos.
 
-Depois que a skill estiver instalada em um agente compatível, o usuário deve poder pedir:
-- "Crie um sistema simples para controlar minhas tarefas."
-- "Adicione login e recuperação de senha."
-- "Melhore essa tela para ficar mais profissional e responsiva."
-- "O botão salvar não funciona. Encontre e corrija."
-- "Adicione um relatório com filtros por período."
-- "Prepare uma primeira versão que eu consiga testar."
+Depois de ver a primeira versão, pode pedir:
 
-Não deve precisar conhecer o nome de checklists, metodologias, comandos do CLI ou ferramentas internas da DevExcellence.
+> Inclua uma busca por nome e deixe a tela mais fácil de usar no celular.
 
-## Ciclo principal
+Você participa dando direção e avaliando o resultado. A ferramenta de IA ajuda com a implementação.
 
-1. **Ideia:** entender o problema e o resultado esperado.
-2. **Primeira versão:** propor o menor escopo útil e construir uma funcionalidade completa.
-3. **Execução:** rodar o projeto ou os testes disponíveis e observar erros.
-4. **Correção:** corrigir o que falhou e completar estados de interface e fluxos.
-5. **Iteração:** incorporar feedback do usuário sem recomeçar desnecessariamente.
-6. **Entrega:** resumir o que funciona, como testar e o que ainda falta.
+## Qual é o papel da DevExcellence?
 
-O agente deve perguntar somente quando uma decisão bloquear o trabalho ou tiver impacto significativo. Nos demais casos, deve adotar padrões simples e reversíveis.
+A DevExcellence é uma **skill**, ou seja, um conjunto de instruções que a ferramenta de programação com IA pode carregar.
 
-## Qualidade sem burocracia
+Ela orienta a IA a:
 
-- Preservar stack, design e estrutura já existentes.
-- Não criar arquitetura, abstrações, agentes ou dependências sem necessidade.
-- Construir fluxos completos, não apenas telas estáticas.
-- Validar o comportamento alterado com ferramentas reais.
-- Explicar limitações e não inventar resultados.
-- Manter segurança básica no código sem submeter cada tarefa a uma auditoria extensa.
+- entender o pedido antes de alterar o código;
+- conhecer somente as partes do projeto necessárias para a tarefa;
+- aproveitar as tecnologias e o visual que o projeto já utiliza;
+- construir funcionalidades que realmente funcionem, não apenas telas de demonstração;
+- executar os testes disponíveis e corrigir os problemas que encontrar;
+- explicar o que fez e informar o que não conseguiu verificar.
 
-## Papel da segurança
+A DevExcellence não é uma inteligência artificial independente. Ela complementa a ferramenta de IA que você já usa.
 
-Segurança é um conjunto de proteções incorporadas ao desenvolvimento: segredos fora do código, validação no servidor, autorização correta, proteção de dados e cautela com operações destrutivas. Checklists e scanners especializados entram quando o contexto exige ou quando o usuário pede revisão de segurança.
+## Como é o processo?
 
-A DevExcellence não afirma que um projeto está seguro, certificado ou pronto para produção sem evidências adequadas.
+1. **Você explica:** descreva a ideia ou o problema com suas palavras.
+2. **A IA entende:** analisa os arquivos e identifica onde trabalhar.
+3. **A IA desenvolve:** faz uma primeira parte funcional, respeitando o projeto.
+4. **Você experimenta:** avalia o resultado e diz o que gostaria de mudar.
+5. **A IA ajusta:** melhora a implementação e verifica o que estiver ao alcance das ferramentas.
+6. **Você continua:** novas ideias podem ser adicionadas em etapas.
 
-## O que não deve acontecer
+Não é necessário conhecer os nomes dos arquivos, checklists ou comandos internos da DevExcellence para começar.
 
-- Pedir ao usuário para rodar comandos DevExcellence antes de cada tarefa.
-- Responder com um plano longo quando o pedido é claro e a implementação está autorizada.
-- Ler todos os checklists em toda solicitação.
-- Fazer uma auditoria empresarial completa para ajustar um botão.
-- Reescrever o projeto inteiro para adicionar uma pequena funcionalidade.
-- Entregar uma tela visual sem conectar os comportamentos necessários.
-- Esconder erros de build/teste ou dizer que algo foi validado quando não foi.
+## Exemplos de pedidos
 
-## Princípio do produto
+- "Crie uma tela inicial para meu sistema."
+- "Adicione um cadastro de produtos com nome, preço e estoque."
+- "O relatório está lento. Investigue e melhore."
+- "Adapte as telas para celular."
+- "Explique como faço para executar este projeto."
+- "Revise esta alteração antes de eu publicar."
 
-A melhor experiência é aquela em que a pessoa se concentra na ideia e no feedback, enquanto a skill ajuda o agente a cuidar da implementação, da coerência técnica e das verificações necessárias.
+Quanto mais importante for uma decisão — por exemplo, apagar dados, alterar permissões ou publicar em produção — mais cuidadosa deve ser a confirmação antes de agir.
+
+## Cuidados importantes
+
+A DevExcellence incentiva boas práticas durante o desenvolvimento, mas não substitui testes profissionais, revisão de segurança ou avaliação antes de colocar um sistema em produção.
+
+Os resultados dependem da ferramenta de IA, dos acessos concedidos e dos recursos disponíveis no ambiente. Se a ferramenta não conseguir executar um teste ou abrir uma aplicação, ela deve informar essa limitação em vez de afirmar que tudo funcionou.
+
+## A ideia principal
+
+**Você se concentra no que quer construir. A ferramenta de IA ajuda a desenvolver. A DevExcellence orienta essa colaboração para que o trabalho seja mais organizado, útil e fácil de evoluir.**

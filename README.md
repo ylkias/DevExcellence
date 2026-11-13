@@ -1,103 +1,117 @@
 # DevExcellence
 
-**Uma skill universal de Vibe Coding para transformar ideias em aplicações funcionais usando agentes de IA.**
+**Crie e melhore aplicações conversando com uma inteligência artificial.**
 
-A pessoa descreve o que quer em linguagem natural. A DevExcellence orienta o agente a entender o projeto, construir uma primeira versão funcional, executar e corrigir, melhorar a interface e evoluir o produto em ciclos curtos. Funciona com diferentes agentes, LLMs, linguagens e frameworks.
+A DevExcellence ajuda ferramentas de programação com IA a transformar suas ideias em software. Você explica o que precisa em linguagem natural; a IA entende o projeto, implementa as mudanças, executa as verificações disponíveis e ajusta o que não funcionar.
 
-> Status: skill principal disponível no pacote Agent Skills; CLI local 0.4.0 implementado e testes automatizados adicionados. O workflow de CI valida o pacote e o CLI em Node.js 20 e 22; confira o status da execução mais recente antes de fazer release. Nenhum teste ou scanner deve ser declarado como aprovado sem ter sido realmente executado.
+**A proposta é simples: instalar uma vez e desenvolver conversando.**
 
-## Propósito principal
+## O que é a DevExcellence?
 
-O produto é uma **skill para Vibe Coding**. Ela ajuda o agente de IA a transformar uma ideia em software utilizável: entender o pedido, aproveitar a base existente, implementar uma funcionalidade completa, executar, corrigir erros e iterar com o feedback da pessoa.
+A DevExcellence é uma **skill**: um conjunto de instruções que uma ferramenta de programação com IA usa para trabalhar melhor no seu projeto.
 
-A experiência desejada é: **instalar uma vez e desenvolver conversando**. O usuário não precisa conhecer checklists, metodologias, arquitetura ou comandos internos. A skill toma decisões técnicas reversíveis, pergunta apenas quando necessário e mantém a pessoa no controle de decisões importantes.
+Pense nela como um guia de trabalho para a IA. Ela orienta a ferramenta a entender o que você quer, respeitar o código que já existe, desenvolver em etapas e conferir o resultado.
 
-Qualidade e segurança são guardrails incorporados ao fluxo, não o produto principal. Auditorias extensas e scanners especializados só entram quando o risco ou o pedido justificarem. O CLI é opcional para mantenedores e CI/CD.
+A DevExcellence **não é um modelo de IA e não substitui** ferramentas como Claude Code, Codex ou Cursor. Ela complementa essas ferramentas.
 
-## O que ela ajuda a fazer
+## O que você pode fazer com ela?
 
-- Transformar descrições em linguagem natural em funcionalidades e aplicações utilizáveis.
-- Construir MVPs e primeiras versões em fatias pequenas, completas e testáveis.
-- Entender e preservar projetos, stacks, componentes, design systems e padrões já existentes.
-- Implementar interfaces responsivas, interações, regras de negócio, APIs e persistência quando necessários.
-- Executar a aplicação e os testes disponíveis, interpretar falhas, corrigir e iterar.
-- Incorporar feedback visual e funcional sem reescrever o projeto sem motivo.
-- Escolher soluções técnicas simples e reversíveis quando o usuário não especificar detalhes.
-- Aplicar qualidade e segurança como proteções proporcionais ao contexto, sem burocratizar tarefas simples.
-- Selecionar checklists e verificações somente quando a mudança ou o risco justificar.
-- Reduzir leituras redundantes, chamadas desnecessárias e consumo de contexto/tokens.
-- Explicar o que ficou pronto, como testar e quais limitações permanecem.
+Você pode pedir, por exemplo:
 
-## Princípios
+- "Crie um sistema simples para controlar minhas tarefas."
+- "Adicione uma tela de login ao meu projeto."
+- "Deixe esta página mais bonita e adaptada para celular."
+- "O botão salvar não funciona. Encontre e corrija o problema."
+- "Adicione um relatório com filtros por período."
+- "Explique como executar o projeto no meu computador."
 
-1. **Construir junto:** priorizar uma implementação funcional quando o pedido for implementar e as ferramentas permitirem.
-2. **Interação simples:** conversar em linguagem natural, com o mínimo de perguntas e etapas.
-3. **Iteração rápida:** entregar pequenas partes funcionais, testar e melhorar com feedback.
-4. **Preservar o projeto:** respeitar stack, arquitetura e identidade visual existentes.
-5. **Qualidade proporcional:** testar o que mudou e ampliar a validação quando o risco exigir.
-6. **Segurança incorporada:** proteger dados, credenciais e operações sem transformar toda tarefa em auditoria.
-7. **Eficiência:** reduzir contexto, leituras e chamadas redundantes.
-8. **Transparência:** não inventar validações, resultados ou garantias.
+A DevExcellence orienta a IA a entender o projeto, implementar o que foi pedido, testar o que estiver ao alcance das ferramentas e explicar o que foi feito.
 
-## Ciclo de Vibe Coding
+## Como começar
 
-1. Entender a ideia e o resultado esperado sem exigir uma especificação extensa.
-2. Identificar o mínimo de contexto do projeto e preservar sua stack e identidade visual.
-3. Construir uma primeira fatia funcional de ponta a ponta.
-4. Executar ou testar com as ferramentas disponíveis.
-5. Corrigir falhas e incorporar feedback em iterações curtas.
-6. Entregar um resumo do que funciona, como testar e o que ainda falta.
+Você precisa de uma ferramenta de programação com IA e do Node.js instalado no computador. A instalação é feita pelo Skills CLI.
 
-O agente pergunta apenas quando uma decisão bloqueia o trabalho ou traz impacto significativo. Qualidade e segurança funcionam como guardrails proporcionais; auditorias completas não são aplicadas automaticamente a tarefas simples. Veja [docs/VIBECODING.md](docs/VIBECODING.md).
+### 1. Para ferramentas com instalação global
 
-## Estrutura do repositório
-
-- `skills/devexcellence/`: pacote instalável completo, com `SKILL.md`, checklists, referências adaptativas e modelos de relatório.
-- `checklists/`: fonte de trabalho dos módulos de qualidade, segurança, APIs, banco, máscaras/formatação, integridade, resiliência, privacidade/LGPD, frontend/acessibilidade, cadeia de suprimentos, observabilidade, backup/recuperação, internacionalização, entrega, testes, performance e Quality Score.
-- `docs/`: instalação, fluxo de Vibe Coding, eficiência de contexto, checklists e ferramentas complementares.
-- `templates/`: modelos de relatório de auditoria, plano de implementação e registro de achados.
-- `examples/`: exemplos de achados e prompts reutilizáveis.
-- `cli/`: CLI local 0.4.0, auditoria estática de testes, Quality Score, testes unitários e documentação.
-- `CHANGELOG.md`, `CONTRIBUTING.md` e `SECURITY.md`: histórico, diretrizes de contribuição e política de segurança.
-
-## Instalação rápida
-
-### Instalação global
-
-Para agentes que oferecem instalação global, instale diretamente do GitHub usando o Skills CLI:
+Abra o terminal e execute:
 
 ```bash
 npx skills add https://github.com/ylkias/DevExcellence --skill devexcellence --agent '*' --global --yes
 ```
 
-O comando disponibiliza a DevExcellence globalmente para os agentes compatíveis detectados pelo Skills CLI. Depois, basta abrir/recarregar o agente e pedir tarefas de desenvolvimento normalmente: a seleção de contexto e a economia de tokens são aplicadas automaticamente pela skill.
+Esse comando instala a skill globalmente nos agentes compatíveis encontrados pelo instalador.
 
-### Eve e PromptScript (instalação por projeto)
+### 2. Para Eve e PromptScript
 
-Para usar a mesma skill no Eve ou PromptScript, abra o terminal **na pasta raiz do projeto** e execute:
+Eve e PromptScript também são ferramentas de IA usadas para trabalhar com código, mas o instalador não oferece instalação global para elas.
+
+Para usá-las, abra o terminal **na pasta principal do projeto** e execute:
 
 ```bash
 npx skills add https://github.com/ylkias/DevExcellence --skill devexcellence --yes --agent eve promptscript
 ```
 
-Esse comando usa o **mesmo repositório GitHub**, mas instala a skill somente no projeto atual. Repita-o em cada projeto onde quiser utilizá-la com esses agentes. Não inclua `--global`.
+Esse é o mesmo repositório e a mesma DevExcellence. A diferença é que a instalação fica somente no projeto em que o comando foi executado. Repita em cada projeto onde quiser usar a skill.
 
-**Importante:** Eve e PromptScript não oferecem instalação global pelo Skills CLI. Portanto, se aparecerem como incompatíveis no resultado do comando global, isso não significa que a instalação falhou nos outros agentes.
+### 3. Comece a conversar
 
-Cada usuário precisa ter acesso de leitura ao repositório enquanto ele permanecer privado. Consulte [docs/INSTALLATION.md](docs/INSTALLATION.md) para autenticação, instalação por projeto e solução de problemas.
+Depois da instalação, abra ou reinicie sua ferramenta de programação com IA. Entre no projeto e peça o que deseja fazer, usando suas próprias palavras.
 
-## Ferramentas complementares (opcionais)
+Você não precisa executar comandos da DevExcellence antes de cada pedido, conhecer checklists ou escrever prompts especiais.
 
-O CLI local é destinado a mantenedores e pipelines que precisam de verificações determinísticas adicionais. Ele não é requisito para instalar ou usar a skill no dia a dia. A instalação pelo Skills CLI entrega a pasta completa `skills/devexcellence/`, incluindo checklists, referências e modelos.
+Consulte o [guia de instalação](docs/INSTALLATION.md) para mais detalhes e solução de problemas.
 
-## Escopo e limitações atuais
+## O que a DevExcellence faz durante o desenvolvimento?
 
-- A skill pode orientar projetos em diferentes stacks, mas as verificações reais dependem das ferramentas instaladas e das permissões concedidas.
-- O CLI 0.4.0 é uma ferramenta complementar para mantenedores, incluindo auditoria estática de testes e gate do artefato de produção; a auditoria de testes é estática/heurística e não comprova efetividade, autoria por IA ou cobertura. O CLI não executa SAST/DAST, pentest, scanner completo de dependências, mutation testing automático ou testes de carga.
-- A documentação define um protocolo opcional multiagente; o repositório não inclui runtime executável de orquestração. Um único agente deve conseguir executar todo o fluxo.
-- Uma meta de 5.000 usuários simultâneos precisa ser definida como uma carga mensurável e comprovada por testes de carga. Ela não é garantida apenas por uma revisão de arquitetura.
-- O repositório permanece privado durante o desenvolvimento inicial. Antes de torná-lo público, escolha uma licença open source explícita e revise os termos de contribuição.
+1. Entende o que você quer construir ou corrigir.
+2. Analisa as partes relevantes do projeto.
+3. Faz a alteração necessária, aproveitando o que já existe.
+4. Executa a aplicação ou os testes disponíveis, quando a ferramenta permite.
+5. Corrige os problemas encontrados e explica o resultado.
 
-## Como contribuir
+Ela procura fazer mudanças pequenas e úteis, sem complicar tarefas simples. Para assuntos importantes, como login, permissões, dados pessoais e pagamentos, orienta a IA a tomar cuidados adicionais.
 
-Consulte [CONTRIBUTING.md](CONTRIBUTING.md). As contribuições devem ser objetivas, reproduzíveis e documentadas, sem incluir código proprietário, credenciais ou dados pessoais reais.
+## O que ela não faz?
+
+- Não fornece, por conta própria, um modelo de inteligência artificial.
+- Não substitui sua ferramenta de programação com IA.
+- Não garante que todo código esteja livre de erros ou pronto para produção.
+- Não executa testes, publica sistemas ou acessa serviços sem que a ferramenta utilizada tenha os recursos e as permissões necessários.
+
+## Perguntas frequentes
+
+**Preciso saber programar?**
+
+Não é necessário conhecer os comandos ou a estrutura interna da DevExcellence. Você pode explicar o resultado desejado com palavras simples. A ferramenta de IA usada continua tendo os limites e as capacidades dela.
+
+**O que é uma skill?**
+
+É um conjunto de instruções que uma ferramenta de IA pode carregar para seguir uma forma de trabalho. Neste projeto, essas instruções ajudam a IA durante o desenvolvimento de software.
+
+**O que é Eve?**
+
+Eve é uma das ferramentas de IA para programação que pode usar skills. Ela não faz parte da DevExcellence e você não precisa instalar Eve para usar este projeto. Para Eve, a instalação da DevExcellence é feita dentro de cada projeto.
+
+**Preciso usar Eve ou PromptScript?**
+
+Não. Eles são apenas duas das opções. Você pode usar qualquer ferramenta compatível com o formato Agent Skills e com o instalador.
+
+**A DevExcellence é gratuita e de código aberto?**
+
+O repositório está em preparação para uma possível publicação. A licença ainda precisa ser definida. Tornar o repositório público, por si só, não concede autorização para copiar, modificar ou redistribuir o conteúdo. Consulte a seção sobre licença abaixo antes de reutilizar o projeto.
+
+## Para quem quer conhecer os detalhes técnicos
+
+O uso normal não exige conhecer a estrutura interna. Quem quiser entender o funcionamento pode consultar:
+
+- [Como funciona o Vibe Coding](docs/VIBECODING.md)
+- [Guia de instalação](docs/INSTALLATION.md)
+- [Histórico de alterações](CHANGELOG.md)
+- [Como contribuir](CONTRIBUTING.md)
+- [Política de segurança](SECURITY.md)
+
+## Situação da licença
+
+A licença atual reserva todos os direitos e não autoriza uso, cópia, modificação ou redistribuição. **Antes de divulgar o repositório como projeto de código aberto, será necessário escolher e publicar uma licença adequada**, além de revisar os termos de contribuição.
+
+Enquanto o repositório estiver privado, quem for instalar também precisa ter acesso de leitura ao GitHub. Quando o código estiver público, o acesso ao repositório não dependerá de convite.
