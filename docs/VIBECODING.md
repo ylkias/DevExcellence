@@ -31,6 +31,8 @@ Ela orienta a IA a:
 
 A DevExcellence não é uma inteligência artificial independente. Ela complementa a ferramenta de IA que você já usa.
 
+Além de ajudar a implementar funcionalidades, ela procura manter o padrão de qualidade do projeto ao longo do tempo. Isso significa respeitar a arquitetura, o visual, as convenções, os testes, a segurança e a documentação já adotados.
+
 ## Como é o processo?
 
 1. **Você explica:** descreva a ideia ou o problema com suas palavras.
@@ -38,7 +40,7 @@ A DevExcellence não é uma inteligência artificial independente. Ela complemen
 3. **A IA desenvolve:** faz uma primeira parte funcional, respeitando o projeto.
 4. **Você experimenta:** avalia o resultado e diz o que gostaria de mudar.
 5. **A IA ajusta:** melhora a implementação e verifica o que estiver ao alcance das ferramentas.
-6. **Você continua:** novas ideias podem ser adicionadas em etapas.
+6. **Você continua:** novas ideias podem ser adicionadas em etapas, mantendo o mesmo padrão de qualidade.
 
 Não é necessário conhecer os nomes dos arquivos, checklists ou comandos internos da DevExcellence para começar.
 
@@ -52,6 +54,16 @@ Não é necessário conhecer os nomes dos arquivos, checklists ou comandos inter
 - "Revise esta alteração antes de eu publicar."
 
 Quanto mais importante for uma decisão — por exemplo, apagar dados, alterar permissões ou publicar em produção — mais cuidadosa deve ser a confirmação antes de agir.
+
+## Como a qualidade é mantida
+
+A cada nova alteração, a DevExcellence considera o padrão que o projeto já utiliza. Ela evita introduzir estilos diferentes, duplicação, atalhos inseguros ou mudanças que quebrem funcionalidades existentes. Também orienta a ferramenta de IA a executar os testes e verificações adequados à mudança.
+
+Quando você voltar em outra conversa, a skill deve consultar as instruções e configurações relevantes que estão salvas no próprio projeto. Assim, a continuidade não depende de a IA lembrar do histórico do chat.
+
+A validação é proporcional: uma mudança pequena recebe testes direcionados; alterações em autenticação, permissões, dados, integrações ou publicação exigem verificações mais cuidadosas. A ferramenta deve informar o que conseguiu validar e o que ficou pendente.
+
+Veja o [padrão contínuo de qualidade](QUALITY-STANDARD.md).
 
 ## Cuidados importantes
 

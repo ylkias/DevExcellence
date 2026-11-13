@@ -1,5 +1,12 @@
 # Histórico de alterações
 
+## Qualidade contínua entre alterações
+
+- Define a identificação do padrão de qualidade de cada projeto a partir de instruções, configurações, testes, CI e exemplos existentes.
+- Exige preservar ou melhorar consistência, arquitetura, interface, segurança, testes e documentação a cada evolução.
+- Orienta a releitura das regras persistidas no repositório em novas conversas, sem depender de memória do chat.
+- Mantém validação proporcional ao risco e evita auditorias completas para tarefas pequenas.
+
 ## Ativação automática e primeira conversa
 
 - Amplia a descrição da skill para acionar por correspondência implícita em pedidos comuns de desenvolvimento e na primeira conversa orientada ao projeto.

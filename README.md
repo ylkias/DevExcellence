@@ -25,7 +25,7 @@ Você pode pedir, por exemplo:
 - "Adicione um relatório com filtros por período."
 - "Explique como executar o projeto no meu computador."
 
-A DevExcellence orienta a IA a entender o projeto, implementar o que foi pedido, testar o que estiver ao alcance das ferramentas e explicar o que foi feito.
+A DevExcellence orienta a IA a entender o projeto, implementar o que foi pedido, testar o que estiver ao alcance das ferramentas e explicar o que foi feito. Também ajuda a manter o padrão de qualidade nas próximas alterações, respeitando a arquitetura, o visual, os testes, a segurança e as convenções já existentes.
 
 ## Como começar
 
@@ -123,6 +123,7 @@ O código fica disponível para consulta, estudo, modificação e compartilhamen
 O uso normal não exige conhecer a estrutura interna. Quem quiser entender o funcionamento pode consultar:
 
 - [Como funciona o Vibe Coding](docs/VIBECODING.md)
+- [Como a qualidade é mantida](docs/QUALITY-STANDARD.md)
 - [Guia de instalação](docs/INSTALLATION.md)
 - [Histórico de alterações](CHANGELOG.md)
 - [Como contribuir](CONTRIBUTING.md)
